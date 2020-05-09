@@ -7,9 +7,9 @@ import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
 import 'package:provider/provider.dart';
 
-/**
- *Created by Andris on 27-Apr-20
- */
+
+///Created by Andris on 27-Apr-20
+
 class TripList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -67,11 +67,20 @@ class TripList extends StatelessWidget {
                   Utilities.secondsToTime(itemTripEntry.duration).toString()),
               FutureBuilder(
                   future: MySettings.getDistanceUnitsString(),
+                  // ignore: missing_return
                   builder: (BuildContext context, AsyncSnapshot<String> text) {
+                    //print("text: " +  text.data);
+                    if(text.hasData){
                     return Text("Distance: " +
                         Utilities.dp(itemTripEntry.distance, 2).toString() +
                         text.data);
-                  }),
+                  } else {
+                      return Text("Distance: " +
+                          Utilities.dp(itemTripEntry.distance, 2).toString() +
+                          "");
+                    }
+                  }
+                    ),
               Divider(
                 color: Colors.deepOrangeAccent,
               )
