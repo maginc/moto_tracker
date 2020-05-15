@@ -4,6 +4,8 @@ import 'package:mototracker/location_tracker/location_tracker_bloc/location_trac
 import 'package:mototracker/location_tracker/location_tracker_bloc/location_tracker_state.dart';
 import 'package:mototracker/util/utilities.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mototracker/constants.dart' as Constants;
+
 
 
 /**
@@ -16,9 +18,9 @@ class Duration extends StatelessWidget {
         builder: (context, state) {
           int duration = (state.currentTrip.duration == null) ? 0 : state.currentTrip.duration;
 
-          return Padding(
-            padding: const EdgeInsets.all(1),
-            child: Container(
+          return Container(
+            child: Card(
+              color: Constants.MAIN_CARD_COLOR,
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(1),
@@ -28,22 +30,20 @@ class Duration extends StatelessWidget {
                       children: [
                         RichText(
                           text: TextSpan(
-                              style: TextStyle(color: Colors.black87, fontSize: 40),
+                              style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 40),
                               text: Utilities.secondsToTime(duration),
                             ),
                         ),
                         Text(
                           "Duration",
-                          style: GoogleFonts.robotoMono(fontSize: 20),
+                          style: GoogleFonts.robotoMono(fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
                         )
                       ]),
                 ),
               ),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(width: 3.0, color: Colors.white),
-              ),
             ),
+            width: double.infinity,
+
           );
         });
   }

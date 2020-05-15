@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
+import 'package:mototracker/constants.dart' as Constants;
+
 
 /**
  *Created by Andris on 20-Apr-20
@@ -15,9 +17,9 @@ class Altitude extends StatelessWidget {
           (state.currentTrip.coordinateList.last.altitude==null) ?
           0 :
           state.currentTrip.coordinateList.last.altitude;
-      return Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
+      return Container(
+        child: Card(
+          color: Constants.MAIN_CARD_COLOR,
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(1),
@@ -27,7 +29,7 @@ class Altitude extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                          style: TextStyle(color: Colors.black87, fontSize: 50),
+                          style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 50),
                           text: altitude.toString(),
                           children: [
                             TextSpan(text: "m", style: TextStyle(fontSize: 15))
@@ -35,16 +37,14 @@ class Altitude extends StatelessWidget {
                     ),
                     Text(
                       "Altitude",
-                      style: GoogleFonts.robotoMono(fontSize: 20, color: Colors.black87),
+                      style: GoogleFonts.robotoMono(fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
                     )
                   ]),
             ),
           ),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            border: Border.all(width: 3.0, color: Colors.white),
-          ),
         ),
+        width: double.infinity,
+
       );
     });
   }

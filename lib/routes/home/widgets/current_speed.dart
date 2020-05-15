@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
 import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
+import 'package:mototracker/constants.dart' as Constants;
 
 /**
  *Created by Andris on 20-Apr-20
@@ -18,32 +19,35 @@ class CurrentSpeed extends StatelessWidget {
           : state.currentTrip.coordinateList.last.speed;
 
       return Container(
-        child: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FutureBuilder(
-                    future: MySettings.getSpeedUnitsString(),
-                    builder:
-                        (BuildContext context, AsyncSnapshot<String> text) {
-                      return RichText(
-                        text: TextSpan(
-                            style:
-                                TextStyle(color: Colors.black87, fontSize: 50),
-                            text: Utilities.showSpeed(speed, text.data),
-                            children: [
-                              TextSpan(
-                                  text: text.data,
-                                  style: TextStyle(fontSize: 15),)
-                            ]),
-                      );
-                    }),
-                Text(
-                  "Speed",
-                  style: GoogleFonts.robotoMono(fontSize: 20, color: Colors.black87),
-                )
-              ]),
+        child: Card(
+          color: Constants.MAIN_CARD_COLOR,
+          child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  FutureBuilder(
+                      future: MySettings.getSpeedUnitsString(),
+                      builder:
+                          (BuildContext context, AsyncSnapshot<String> text) {
+                        return RichText(
+                          text: TextSpan(
+                              style:
+                                  TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 50),
+                              text: Utilities.showSpeed(speed, text.data),
+                              children: [
+                                TextSpan(
+                                    text: text.data,
+                                    style: TextStyle(fontSize: 15),)
+                              ]),
+                        );
+                      }),
+                  Text(
+                    "Speed",
+                    style: GoogleFonts.robotoMono(fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
+                  )
+                ]),
+          ),
         ),
         width: double.infinity,
       );

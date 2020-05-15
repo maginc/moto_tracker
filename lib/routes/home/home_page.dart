@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage>{
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
               icon: Icon(
-                Icons.event,
+                Icons.format_align_left,
                 color: Colors.black87,
                 size: 30,
               ),
@@ -86,25 +86,28 @@ class _HomePageState extends State<HomePage>{
                         child: CurrentSpeed(),
                       ),
                     ),
-                    VerticalDivider(
+             /*       VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
                       indent: 50,
                       endIndent: 50,
-                    ),
+                    ),*/
                     Expanded(
-                      child: Container(height: 200, child: Distance()),
+                      child: Container(
+                          height: 200,
+                          child: Distance()
+                      ),
                     )
                   ],
                 ),
               ),
             ),
-            Divider(
+         /*   Divider(
               thickness: 1,
               color: separatorLineColor,
               indent: 100,
               endIndent: 100,
-            ),
+            ),*/
             Expanded(
               flex: 3,
               child: Container(
@@ -116,12 +119,12 @@ class _HomePageState extends State<HomePage>{
                         child: Altitude(),
                       ),
                     ),
-                    VerticalDivider(
+                /*    VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
                       indent: 50,
                       endIndent: 50,
-                    ),
+                    ),*/
                     Expanded(
                       child: Container(height: 200, child: Duration()),
                     )
@@ -129,12 +132,12 @@ class _HomePageState extends State<HomePage>{
                 ),
               ),
             ),
-            Divider(
+        /*    Divider(
               thickness: 1,
               color: separatorLineColor,
               indent: 100,
               endIndent: 100,
-            ),
+            ),*/
             Expanded(
               flex: 3,
               child: Container(
@@ -143,12 +146,12 @@ class _HomePageState extends State<HomePage>{
                     Expanded(
                       child: Container(height: 200, child: MaxSpeed()),
                     ),
-                    VerticalDivider(
+                 /*   VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
                       indent: 50,
                       endIndent: 50,
-                    ),
+                    ),*/
                     Expanded(
                       child: Container(
                         height: 200,
@@ -164,7 +167,7 @@ class _HomePageState extends State<HomePage>{
         ),
         bottomNavigationBar: BottomAppBar(
           elevation: 0,
-          shape: const CircularNotchedRectangle(),
+          shape: CircularNotchedRectangle(),
           child: Container(
             height: 70.0,
           ),

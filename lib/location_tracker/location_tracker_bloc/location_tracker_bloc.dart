@@ -102,6 +102,7 @@ class LocationTrackerBloc
 
       /*
           distance calculation
+          result is in kilometres
        */
       if (coordinateList.length > 2) {
         distance = distance +
@@ -114,9 +115,12 @@ class LocationTrackerBloc
       /*
           Average speed calculation
        */
+      print("dura:" + duration.toString());
+      print("dist:" + distance.toString());
 
-      if (distance > 0 && duration > 0) {
-        averageSpeed = (distance / duration) * 3600;
+      if (distance > 0.03 && duration > 1) {
+        averageSpeed = (distance / (duration-1)) * 3600;
+
 
       }
       add(LocationChange(CurrentTrip(
@@ -174,11 +178,11 @@ class LocationTrackerBloc
 
   //TODO replace this with proper solution, and i mean ALL this class.
   void returnMutableStatesToInitialValuesThisCodeIsFarFromBestPractices() {
-    coordinateList = [];
-    distance = 0.0;
-    maxSpeed = 0.0;
-    duration = 0;
-    averageSpeed = 0.0;
+    this.coordinateList = [];
+    this.distance = 0.0;
+    this.maxSpeed = 0.0;
+    this.duration = 0;
+    this.averageSpeed = 0.0;
   }
 
   Stream<LocationTrackerState> _mapFinishToState() async* {

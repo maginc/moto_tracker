@@ -14,7 +14,7 @@ class TripListPage extends StatelessWidget {
     return Provider<TripDatabase>(
       create: (context) => TripDatabase(),
       child: WillPopScope(
-        onWillPop: () async{
+        onWillPop: () {
           return  Navigator.pushNamed(context, '/');
         },
           child: TripList()),

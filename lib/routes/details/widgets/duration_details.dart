@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mototracker/persistence/my_trip.dart';
 import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
+import 'package:mototracker/constants.dart' as Constants;
 
 /// Create by Andris on 15/05/2020
 class DurationDetails extends StatelessWidget {
@@ -11,43 +12,50 @@ class DurationDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return               Card(
-      child: Row(
-        children: [
-          Icon(
-            Icons.timer,
-            size: 40,
-            color: Colors.black54,
-          ),
-          Spacer(),
-          FutureBuilder(
-              future:
-              MySettings.getDistanceUnitsString(),
-              // ignore: missing_return
-              builder: (BuildContext context,
-                  AsyncSnapshot<String> text) {
-                if (text.hasData) {
-                  return Column(
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                            text:Utilities.secondsToTime(myTripEntry.duration),
-
-                            style: TextStyle(fontSize: 30, color: Colors.black87, fontWeight: FontWeight.bold)
+    return Card(
+      color: Constants.MAIN_CARD_COLOR,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(19.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Row(
+          children: [
+            Icon(
+              Icons.timer,
+              size: 40,
+              color: Constants.BACKGROUD_COLOR,
+            ),
+            Spacer(),
+            FutureBuilder(
+                future: MySettings.getDistanceUnitsString(),
+                // ignore: missing_return
+                builder: (BuildContext context, AsyncSnapshot<String> text) {
+                  if (text.hasData) {
+                    return Column(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                              text: Utilities.secondsToTime(myTripEntry.duration),
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  color: Constants.MAIN_TEXT_COLOR,
+                                  fontWeight: FontWeight.bold)),
                         ),
-                      ),
-                      Text('Duration', style: TextStyle(color: Colors.black54, fontSize: 20),)
-                    ],
-                  );
-                } else {
-                  return Container(
-                      width: 0.0, height: 0.0);
-                }
-              }),
-          Spacer(),
-        ],
+                        Text(
+                          'Duration',
+                          style: TextStyle(color: Constants.SECONDARY_TEXT_COLOR, fontSize: 20),
+                        )
+                      ],
+                    );
+                  } else {
+                    return Container(width: 0.0, height: 0.0);
+                  }
+                }),
+            Spacer(),
+          ],
+        ),
       ),
     );
   }
-
 }

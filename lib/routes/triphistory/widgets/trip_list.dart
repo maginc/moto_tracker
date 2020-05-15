@@ -13,27 +13,32 @@ import 'package:provider/provider.dart';
 class TripList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Constants.BACKGROUD_COLOR,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        title: Text("My routes"),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black87,
+    return WillPopScope(
+      onWillPop: () {
+        return  Navigator.pushNamed(context, '/');
+      },
+      child: Scaffold(
+        backgroundColor: Constants.BACKGROUD_COLOR,
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          title: Text("My routes"),
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black87,
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/');
+            },
           ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/');
-          },
         ),
+        body: Column(children: [
+          Expanded(
+            child: _buildTaskList(context),
+          )
+        ]),
       ),
-      body: Column(children: [
-        Expanded(
-          child: _buildTaskList(context),
-        )
-      ]),
     );
   }
 
