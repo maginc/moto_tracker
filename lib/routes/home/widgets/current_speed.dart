@@ -31,17 +31,17 @@ class CurrentSpeed extends StatelessWidget {
                         text: TextSpan(
                             style:
                                 TextStyle(color: Colors.black87, fontSize: 50),
-                            text: Utilities.msToKmh(speed).toString(),
+                            text: Utilities.showSpeed(speed, text.data),
                             children: [
                               TextSpan(
                                   text: text.data,
-                                  style: TextStyle(fontSize: 15))
+                                  style: TextStyle(fontSize: 15),)
                             ]),
                       );
                     }),
                 Text(
                   "Speed",
-                  style: GoogleFonts.robotoMono(fontSize: 20),
+                  style: GoogleFonts.robotoMono(fontSize: 20, color: Colors.black87),
                 )
               ]),
         ),
@@ -49,4 +49,5 @@ class CurrentSpeed extends StatelessWidget {
       );
     });
   }
+
 }

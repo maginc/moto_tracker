@@ -14,11 +14,20 @@ import 'widgets/widgets.dart';
  */
 
 //TODO review how gui is made, remove unnecessary widget nesting
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
 
   @override
+  _HomePageState createState() => _HomePageState();
+
+
+
+}
+class _HomePageState extends State<HomePage>{
+  bool running = false;
+  @override
   Widget build(BuildContext context) {
-    const separatorLineColor = Colors.teal;
+
+    const separatorLineColor = Colors.redAccent;
     return Scaffold(
         backgroundColor: Constants.BACKGROUD_COLOR,
         appBar: AppBar(
@@ -33,10 +42,12 @@ class HomePage extends StatelessWidget {
                 size: 30,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TripListPage()),
-                );
+                if(!running) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TripListPage()),
+                  );
+                }
               },
             ),
           ),
@@ -50,10 +61,12 @@ class HomePage extends StatelessWidget {
                   size: 30,
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SettingsPage()),
-                  );
+                  if(!running) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SettingsPage()),
+                    );
+                  }
                 },
               ),
             ),
@@ -76,8 +89,8 @@ class HomePage extends StatelessWidget {
                     VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
-                      indent: 20,
-                      endIndent: 0,
+                      indent: 50,
+                      endIndent: 50,
                     ),
                     Expanded(
                       child: Container(height: 200, child: Distance()),
@@ -89,8 +102,8 @@ class HomePage extends StatelessWidget {
             Divider(
               thickness: 1,
               color: separatorLineColor,
-              indent: 20,
-              endIndent: 20,
+              indent: 100,
+              endIndent: 100,
             ),
             Expanded(
               flex: 3,
@@ -106,8 +119,8 @@ class HomePage extends StatelessWidget {
                     VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
-                      indent: 0,
-                      endIndent: 0,
+                      indent: 50,
+                      endIndent: 50,
                     ),
                     Expanded(
                       child: Container(height: 200, child: Duration()),
@@ -119,8 +132,8 @@ class HomePage extends StatelessWidget {
             Divider(
               thickness: 1,
               color: separatorLineColor,
-              indent: 20,
-              endIndent: 20,
+              indent: 100,
+              endIndent: 100,
             ),
             Expanded(
               flex: 3,
@@ -133,8 +146,8 @@ class HomePage extends StatelessWidget {
                     VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
-                      indent: 0,
-                      endIndent: 20,
+                      indent: 50,
+                      endIndent: 50,
                     ),
                     Expanded(
                       child: Container(
@@ -183,9 +196,13 @@ class HomePage extends StatelessWidget {
             icon: Icon(
               Icons.play_arrow,
               size: 40,
+
             ),
-            label: Text("GO!"),
-            onPressed: () => locationTrackerBloc.add(Start()),
+            label: Text("GO!", style: TextStyle( fontWeight: FontWeight.bold),),
+            onPressed: () {
+              locationTrackerBloc.add(Start());
+              running = true;
+            },
           ),
         ),
       );
@@ -213,9 +230,19 @@ class HomePage extends StatelessWidget {
                 backgroundColor: Colors.red,
                 child: Icon(
                   Icons.stop,
-                  color: Colors.black87,
+
                 ),
-                onPressed: () => AlertDialogs.saveTripAlertDialog(context, locationTrackerBloc)),
+                onPressed: () {
+                  setState(() {
+                    running = false;
+                  });
+
+                  AlertDialogs.saveTripAlertDialog(
+                      context, locationTrackerBloc);
+
+                }
+
+            ),
           ),
         ),
         Spacer()
@@ -246,7 +273,12 @@ class HomePage extends StatelessWidget {
                 Icons.stop,
                 color: Colors.black87,
               ),
-              onPressed: () => AlertDialogs.saveTripAlertDialog(context, locationTrackerBloc),
+              onPressed: () {
+                setState(() {
+                  running = false;
+                });
+                AlertDialogs.saveTripAlertDialog(context, locationTrackerBloc);
+              },
             ),
           ),
         ),
@@ -263,4 +295,6 @@ class HomePage extends StatelessWidget {
     }
     return [];
   }
+
+
 }

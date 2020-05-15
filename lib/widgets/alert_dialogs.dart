@@ -10,8 +10,7 @@ import 'package:provider/provider.dart';
  */
 class AlertDialogs {
 
-  static Future<void> deleteTripAlertDialog(context, int id) async{
-    final database = Provider.of<TripDatabase>(context,listen: false);
+  static Future<void> deleteTripAlertDialog(context, int id, database) async{
     var myColor = Colors.deepOrange;
     return showDialog(
         barrierDismissible: false,
@@ -58,7 +57,10 @@ class AlertDialogs {
                         child: InkWell(
                           onTap: () {
                             database.deleteTripById(id);
+                            database.close();
                             Navigator.pushNamed(context, '/trip_list_page');
+
+
                           },
                           child: Container(
                             padding: EdgeInsets.only(top: 20.0, bottom: 20.0),

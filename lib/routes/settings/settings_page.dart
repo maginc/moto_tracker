@@ -34,89 +34,104 @@ class _SettingsPageState extends State<SettingsPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Constants.BACKGROUD_COLOR,
-        appBar: AppBar(
-          elevation: 0,
-          centerTitle: true,
-          title: Text("Settings"),
-        ),
-        body: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            children: <Widget>[
-              /*
-                  Unit changer metric/imperial
-               */
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: RichText(
-                      text: TextSpan(
-                          children: [
-                            TextSpan(
-                                text: _units,
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.normal))
-                          ],
-                          text: "Units\n",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                  Spacer(),
-                  ToggleButtons(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 25.0,
-                        width: 100,
-                        child: Center(
-                            child: Text(
-                          "Metric",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20.0),
-                        )),
-                      ),
-                      SizedBox(
-                        height: 25.0,
-                        width: 100,
-                        child: Center(
-                            child: Text(
-                          "Imperial",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20.0),
-                        )),
-                      )
-                    ],
-                    onPressed: (int index) {
-                      setState(() {
-                        for (int buttonIndex = 0;buttonIndex < isSelected.length; buttonIndex++) {
-                          if (buttonIndex == index) {
-                            isSelected[buttonIndex] = true;
-                          } else {
-                            isSelected[buttonIndex] = false;
-                          }
-                        }
-                      });
-                      setUnits();
-                    },
-                    isSelected: isSelected,
-                    selectedColor: Colors.white,
-                    fillColor: Colors.black,
-                  ),
-
-                  /*
-                      More settings to be implemented
-                   */
-                ],
-              )
-            ],
+    return WillPopScope(
+      // ignore: missing_return
+      onWillPop: () {
+        Navigator.pushNamed(context, '/');
+      },
+      child: Scaffold(
+          backgroundColor: Constants.BACKGROUD_COLOR,
+          appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            title: Text("Settings"),
+            leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.black87,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/');
+              },
+            ),
           ),
-        ));
+          body: Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: <Widget>[
+                /*
+                    Unit changer metric/imperial
+                 */
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RichText(
+                        text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: _units,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.normal))
+                            ],
+                            text: "Units\n",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                    Spacer(),
+                    ToggleButtons(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 25.0,
+                          width: 100,
+                          child: Center(
+                              child: Text(
+                            "Metric",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20.0),
+                          )),
+                        ),
+                        SizedBox(
+                          height: 25.0,
+                          width: 100,
+                          child: Center(
+                              child: Text(
+                            "Imperial",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20.0),
+                          )),
+                        )
+                      ],
+                      onPressed: (int index) {
+                        setState(() {
+                          for (int buttonIndex = 0;buttonIndex < isSelected.length; buttonIndex++) {
+                            if (buttonIndex == index) {
+                              isSelected[buttonIndex] = true;
+                            } else {
+                              isSelected[buttonIndex] = false;
+                            }
+                          }
+                        });
+                        setUnits();
+                      },
+                      isSelected: isSelected,
+                      selectedColor: Colors.white,
+                      fillColor: Colors.black,
+                    ),
+
+                    /*
+                        More settings to be implemented
+                     */
+                  ],
+                )
+              ],
+            ),
+          )),
+    );
   }
 
   Future<String> getInitState() async {

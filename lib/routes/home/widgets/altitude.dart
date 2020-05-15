@@ -35,7 +35,7 @@ class Altitude extends StatelessWidget {
                     ),
                     Text(
                       "Altitude",
-                      style: GoogleFonts.robotoMono(fontSize: 20),
+                      style: GoogleFonts.robotoMono(fontSize: 20, color: Colors.black87),
                     )
                   ]),
             ),

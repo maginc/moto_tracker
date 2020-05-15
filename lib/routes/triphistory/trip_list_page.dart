@@ -10,9 +10,14 @@ import 'widgets/trip_list.dart';
 class TripListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Provider<TripDatabase>(
       create: (context) => TripDatabase(),
-      child: TripList(),
+      child: WillPopScope(
+        onWillPop: () async{
+          return  Navigator.pushNamed(context, '/');
+        },
+          child: TripList()),
       dispose: (context, db) => db.close(),
     );
   }

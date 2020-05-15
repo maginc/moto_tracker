@@ -30,7 +30,7 @@ class MaxSpeed extends StatelessWidget {
                             text: TextSpan(
                                 style:
                                 TextStyle(color: Colors.black87, fontSize: 50),
-                                text: Utilities.msToKmh(maxSpeed).toString(),
+                                text: Utilities.showSpeed(maxSpeed, text.data),
                                 children: [
                                   TextSpan(
                                       text: text.data,

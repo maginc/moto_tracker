@@ -98,7 +98,7 @@ class LocationTrackerBloc
       /*
           average speed
        */
-      averageSpeed = 2;
+      averageSpeed = 0;
 
       /*
           distance calculation
@@ -117,6 +117,7 @@ class LocationTrackerBloc
 
       if (distance > 0 && duration > 0) {
         averageSpeed = (distance / duration) * 3600;
+
       }
       add(LocationChange(CurrentTrip(
         coordinateList: coordinateList,

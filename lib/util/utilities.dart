@@ -1,10 +1,31 @@
 import 'dart:math';
 
 import 'package:background_locator/location_dto.dart';
+import 'package:moor/moor.dart';
 
 class Utilities {
   static int msToKmh(double metresPerSecond) {
     return (metresPerSecond * 3.6).toInt();
+  }
+
+  static int msToMph(double metresPerSecond) {
+    return (metresPerSecond * 2.23694).toInt();
+  }
+
+  static String showSpeed(double speed, String units) {
+    if (units == 'km/h') {
+      return Utilities.msToKmh(speed).toString();
+    } else {
+      return Utilities.msToMph(speed).toString();
+    }
+  }
+
+  static double showDistance(double distance, String units) {
+    if (units == 'Km') {
+      return distance;
+    } else {
+      return distance / 1.609;
+    }
   }
 
   static String secondsToTime(int seconds) {
@@ -29,12 +50,19 @@ class Utilities {
     return 12742 * asin(sqrt(a));
   }
 
-  static String getDateStringFromDateTime(DateTime dateTime){
+  static String getDateStringFromDateTime(DateTime dateTime) {
     return dateTime.day.toString() +
         '/' +
         dateTime.month.toString() +
         '/' +
         dateTime.year.toString();
+  }
+  static String getTimeStringFromDateTime(DateTime dateTime) {
+    return dateTime.hour.toString() +
+        ':' +
+        dateTime.minute.toString() +
+        ':' +
+        dateTime.second.toString();
   }
 
   static double dp(double val, int places) {
@@ -43,18 +71,26 @@ class Utilities {
   }
 
   static String formatDateLog(DateTime date) {
+    String hour =
+        date.hour >= 10 ? date.hour.toString() : "0" + date.hour.toString();
+    String minute = date.minute >= 10
+        ? date.minute.toString()
+        : "0" + date.minute.toString();
+    String second = date.second >= 10
+        ? date.second.toString()
+        : "0" + date.second.toString();
+
     return date.day.toString() +
         "/" +
         date.month.toString() +
         "/" +
         date.year.toString() +
         "\n" +
-
-      date.hour.toString() +
+        hour +
         ":" +
-        date.minute.toString() +
+        minute +
         ":" +
-        date.second.toString();
+        second;
   }
 
   static String formatLog(LocationDto locationDto) {

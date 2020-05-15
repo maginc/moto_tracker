@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
 import 'package:mototracker/util/settings.dart';
+import 'package:mototracker/util/utilities.dart';
 
 /**
  *Created by Andris on 20-Apr-20
@@ -15,7 +16,6 @@ class AvgSpeed extends StatelessWidget {
       double averageSpeed = (state.currentTrip.averageSpeed == null)
           ? 0
           : state.currentTrip.averageSpeed;
-
       return Container(
         child: Center(
           child: Column(
@@ -30,7 +30,7 @@ class AvgSpeed extends StatelessWidget {
                         text: TextSpan(
                             style:
                                 TextStyle(color: Colors.black87, fontSize: 50),
-                            text: averageSpeed?.toInt().toString(),
+                            text: showAvgSpeed(averageSpeed, text.data),
                             children: [
                               TextSpan(
                                   text: text.data,
@@ -51,4 +51,14 @@ class AvgSpeed extends StatelessWidget {
       );
     });
   }
+
+  String showAvgSpeed(double avgSpeedKmH, String units){
+    if (units == 'km/h') {
+      return avgSpeedKmH.toInt().toString();
+    } else {
+      return (avgSpeedKmH/1.609).toInt().toString();
+    }
+
+  }
+
 }

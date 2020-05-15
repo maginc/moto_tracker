@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
 import 'package:mototracker/util/settings.dart';
+import 'package:mototracker/util/utilities.dart';
 
 /**
  *Created by Andris on 20-Apr-20
@@ -29,7 +30,7 @@ class Distance extends StatelessWidget {
                         text: TextSpan(
                             style:
                             TextStyle(color: Colors.black87, fontSize: 50),
-                            text: _distanceTExt(distance),
+                            text: _distanceTExt(Utilities.showDistance(distance, text.data)),
                             children: [
                               TextSpan(
                                   text: text.data,
