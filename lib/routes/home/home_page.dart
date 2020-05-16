@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mototracker/constants.dart' as Constants;
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
 import 'package:mototracker/routes/triphistory/trip_list_page.dart';
-import 'package:mototracker/constants.dart' as Constants;
 import 'package:mototracker/widgets/alert_dialogs.dart';
 
 import '../settings/settings_page.dart';
@@ -15,18 +15,15 @@ import 'widgets/widgets.dart';
 
 //TODO review how gui is made, remove unnecessary widget nesting
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
-
-
-
 }
-class _HomePageState extends State<HomePage>{
+
+class _HomePageState extends State<HomePage> {
   bool running = false;
+
   @override
   Widget build(BuildContext context) {
-
     const separatorLineColor = Colors.redAccent;
     return Scaffold(
         backgroundColor: Constants.BACKGROUD_COLOR,
@@ -42,7 +39,7 @@ class _HomePageState extends State<HomePage>{
                 size: 30,
               ),
               onPressed: () {
-                if(!running) {
+                if (!running) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => TripListPage()),
@@ -61,7 +58,7 @@ class _HomePageState extends State<HomePage>{
                   size: 30,
                 ),
                 onPressed: () {
-                  if(!running) {
+                  if (!running) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SettingsPage()),
@@ -72,7 +69,6 @@ class _HomePageState extends State<HomePage>{
             ),
           ],
         ),
-
         body: Column(
           children: <Widget>[
             Expanded(
@@ -86,23 +82,20 @@ class _HomePageState extends State<HomePage>{
                         child: CurrentSpeed(),
                       ),
                     ),
-             /*       VerticalDivider(
+                    /*       VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
                       indent: 50,
                       endIndent: 50,
                     ),*/
                     Expanded(
-                      child: Container(
-                          height: 200,
-                          child: Distance()
-                      ),
+                      child: Container(height: 200, child: Distance()),
                     )
                   ],
                 ),
               ),
             ),
-         /*   Divider(
+            /*   Divider(
               thickness: 1,
               color: separatorLineColor,
               indent: 100,
@@ -119,7 +112,7 @@ class _HomePageState extends State<HomePage>{
                         child: Altitude(),
                       ),
                     ),
-                /*    VerticalDivider(
+                    /*    VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
                       indent: 50,
@@ -132,7 +125,7 @@ class _HomePageState extends State<HomePage>{
                 ),
               ),
             ),
-        /*    Divider(
+            /*    Divider(
               thickness: 1,
               color: separatorLineColor,
               indent: 100,
@@ -146,7 +139,7 @@ class _HomePageState extends State<HomePage>{
                     Expanded(
                       child: Container(height: 200, child: MaxSpeed()),
                     ),
-                 /*   VerticalDivider(
+                    /*   VerticalDivider(
                       thickness: 1,
                       color: separatorLineColor,
                       indent: 50,
@@ -199,9 +192,11 @@ class _HomePageState extends State<HomePage>{
             icon: Icon(
               Icons.play_arrow,
               size: 40,
-
             ),
-            label: Text("GO!", style: TextStyle( fontWeight: FontWeight.bold),),
+            label: Text(
+              "GO!",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             onPressed: () {
               locationTrackerBloc.add(Start());
               running = true;
@@ -233,7 +228,6 @@ class _HomePageState extends State<HomePage>{
                 backgroundColor: Colors.red,
                 child: Icon(
                   Icons.stop,
-
                 ),
                 onPressed: () {
                   setState(() {
@@ -242,10 +236,7 @@ class _HomePageState extends State<HomePage>{
 
                   AlertDialogs.saveTripAlertDialog(
                       context, locationTrackerBloc);
-
-                }
-
-            ),
+                }),
           ),
         ),
         Spacer()
@@ -298,6 +289,4 @@ class _HomePageState extends State<HomePage>{
     }
     return [];
   }
-
-
 }
