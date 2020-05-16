@@ -28,7 +28,7 @@ class MaxSpeedDetails extends StatelessWidget {
               color: Constants.BACKGROUD_COLOR,
             ),*/
             SvgPicture.asset(
-              'assets/speed_avg2.svg',
+              'assets/avg_speed.svg',
               color: Colors.white,
               semanticsLabel: 'A red up arrow',
               width: 50,

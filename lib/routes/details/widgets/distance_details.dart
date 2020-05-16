@@ -29,7 +29,7 @@ class DistanceDetails extends StatelessWidget {
               color: Constants.MAIN_TEXT_COLOR,
             ),*/
             SvgPicture.asset(
-              'assets/speed_avg4.svg',
+              'assets/avg_speed.svg',
               color: Colors.white,
               semanticsLabel: 'A red up arrow',
               width: 50,
