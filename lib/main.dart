@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           pageTransitionsTheme: PageTransitionsTheme(
               builders: {
-                TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+                TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
                 TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
               }
           ),

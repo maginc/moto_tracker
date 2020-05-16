@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mototracker/persistence/my_trip.dart';
 import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
@@ -18,13 +19,20 @@ class DurationDetails extends StatelessWidget {
         borderRadius: BorderRadius.circular(19.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(6.0),
         child: Row(
           children: [
-            Icon(
+           /* Icon(
               Icons.timer,
               size: 40,
               color: Constants.BACKGROUD_COLOR,
+            ),*/
+            SvgPicture.asset(
+              'assets/avg_speed.svg',
+              color: Colors.white,
+              semanticsLabel: 'A red up arrow',
+              width: 50,
+              height: 50,
             ),
             Spacer(),
             FutureBuilder(
@@ -38,13 +46,13 @@ class DurationDetails extends StatelessWidget {
                           text: TextSpan(
                               text: Utilities.secondsToTime(myTripEntry.duration),
                               style: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 35,
                                   color: Constants.MAIN_TEXT_COLOR,
                                   fontWeight: FontWeight.bold)),
                         ),
                         Text(
                           'Duration',
-                          style: TextStyle(color: Constants.SECONDARY_TEXT_COLOR, fontSize: 20),
+                          style: TextStyle(color: Constants.SECONDARY_TEXT_COLOR, fontSize: 15),
                         )
                       ],
                     );

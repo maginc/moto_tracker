@@ -40,8 +40,8 @@ class ShowDetails extends StatelessWidget {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         elevation: 0,
-        title:
-            Text(Utilities.getDateStringFromDateTime(myTripEntry.dateAndTime)),
+       /* title:
+            Text(Utilities.getDateStringFromDateTime(myTripEntry.dateAndTime)),*/
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -120,9 +120,9 @@ class ShowDetails extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          Utilities.getTimeStringFromDateTime(
+                          Utilities.formatDateLog(
                               myTripEntry.dateAndTime),
                           style: TextStyle(
                             fontSize: 20.0,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mototracker/persistence/my_trip.dart';
 import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
@@ -21,10 +22,17 @@ class MaxSpeedDetails extends StatelessWidget {
         padding: const EdgeInsets.all(4.0),
         child: Row(
           children: [
-            Icon(
+          /*  Icon(
               Icons.av_timer,
               size: 40,
               color: Constants.BACKGROUD_COLOR,
+            ),*/
+            SvgPicture.asset(
+              'assets/speed_avg2.svg',
+              color: Colors.white,
+              semanticsLabel: 'A red up arrow',
+              width: 50,
+              height: 50,
             ),
             Spacer(),
             FutureBuilder(
@@ -37,7 +45,7 @@ class MaxSpeedDetails extends StatelessWidget {
                         RichText(
                           text: TextSpan(
                               style:
-                              TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 30, fontWeight: FontWeight.bold),
+                              TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 35, fontWeight: FontWeight.bold),
                               text: Utilities.showSpeed(myTripEntry.maxSpeed, text.data),
                               children: [
                                 TextSpan(
@@ -45,7 +53,7 @@ class MaxSpeedDetails extends StatelessWidget {
                                     style: TextStyle(fontSize: 15))
                               ]),
                         ),
-                        Text('Max speed', style: TextStyle(fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),)
+                        Text('Max speed', style: TextStyle(fontSize: 15, color: Constants.SECONDARY_TEXT_COLOR),)
                       ],
                     );
                   } else {

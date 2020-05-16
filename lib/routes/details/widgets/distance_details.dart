@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mototracker/persistence/my_trip.dart';
 import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
@@ -19,13 +20,20 @@ class DistanceDetails extends StatelessWidget {
         borderRadius: BorderRadius.circular(19.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(6.0),
         child: Row(
           children: [
-            Icon(
+         /*   Icon(
               Icons.gps_fixed,
               size: 40,
               color: Constants.MAIN_TEXT_COLOR,
+            ),*/
+            SvgPicture.asset(
+              'assets/speed_avg4.svg',
+              color: Colors.white,
+              semanticsLabel: 'A red up arrow',
+              width: 50,
+              height: 50,
             ),
             Spacer(),
             FutureBuilder(
@@ -43,7 +51,7 @@ class DistanceDetails extends StatelessWidget {
                                       2)
                                   .toString(),
                               style: TextStyle(
-                                  fontSize: 30,
+                                  fontSize: 35,
                                   color: Constants.MAIN_TEXT_COLOR,
                                   fontWeight: FontWeight.bold),
                               children: [
@@ -54,7 +62,7 @@ class DistanceDetails extends StatelessWidget {
                         ),
                         Text(
                           'Distance',
-                          style: TextStyle(fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
+                          style: TextStyle(fontSize: 15, color: Constants.SECONDARY_TEXT_COLOR),
                         )
                       ],
                     );

@@ -85,7 +85,7 @@ class Utilities {
         date.month.toString() +
         "/" +
         date.year.toString() +
-        "\n" +
+        "       " +
         hour +
         ":" +
         minute +

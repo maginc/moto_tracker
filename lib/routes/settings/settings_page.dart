@@ -37,6 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return WillPopScope(
       // ignore: missing_return
       onWillPop: () {
+        print("back vutton pressed!!");
         Navigator.pushNamed(context, '/');
       },
       child: Scaffold(
@@ -92,7 +93,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               child: Text(
                             "Metric",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20.0),
+                                fontWeight: FontWeight.bold, fontSize: 20.0,),
                           )),
                         ),
                         SizedBox(
@@ -119,8 +120,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         setUnits();
                       },
                       isSelected: isSelected,
-                      selectedColor: Colors.white,
-                      fillColor: Colors.black,
+                      selectedColor: Colors.tealAccent,
+                      fillColor: Colors.blueGrey,
                     ),
 
                     /*
