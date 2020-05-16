@@ -23,6 +23,8 @@ class LocationTrackerBloc
         timeDate: "2020-04-24T12:36:57Z")
   ]);
 
+  Timer timerz = Timer();
+  StreamSubscription<int> _timerSubscription;
   List<Coordinate> coordinateList = [];
   double distance = 0.0;
   double maxSpeed = 0.0;
@@ -66,11 +68,18 @@ class LocationTrackerBloc
           duration
        */
 
-    Stream.periodic(Duration(seconds: 1), (x) => x).listen((event) {
-      duration = event;
-    });
+//    Stream.periodic(Duration(seconds: 1), (x) => x).listen((event) {
+//      this.duration ++;
+//    });
 
-    DateTime.now().millisecond;
+    _timerSubscription?.cancel();
+    _timerSubscription = timerz.tick()
+        .listen((event) {
+          print("EVE: " + event.toString());
+          duration++;
+        });
+
+   // DateTime.now().millisecond;
     /*
           get location changes
      */
@@ -141,6 +150,7 @@ class LocationTrackerBloc
   Stream<LocationTrackerState> _mapPausedToState() async* {
     if (state is Running) {
       _tripSubscription?.pause();
+      _timerSubscription?.pause();
       yield Paused(this.state.currentTrip);
     }
   }
@@ -148,6 +158,7 @@ class LocationTrackerBloc
   Stream<LocationTrackerState> _mapResumeToState() async* {
     if (state is Paused) {
       _tripSubscription?.resume();
+      _timerSubscription?.resume();
       yield Running(this.state.currentTrip);
     }
   }
@@ -169,6 +180,7 @@ class LocationTrackerBloc
     database.insertTrip(trip);
     database.close();
     _tripSubscription?.cancel();
+    _timerSubscription?.cancel();
     locationChangeListener = LocationChangeListener();
     locationChangeListener.stopLocationChangeListener();
     returnMutableStatesToInitialValuesThisCodeIsFarFromBestPractices();
@@ -183,13 +195,22 @@ class LocationTrackerBloc
     this.maxSpeed = 0.0;
     this.duration = 0;
     this.averageSpeed = 0.0;
+    _timerSubscription?.cancel();
   }
 
   Stream<LocationTrackerState> _mapFinishToState() async* {
     _tripSubscription?.cancel();
+    _timerSubscription?.cancel();
     locationChangeListener = LocationChangeListener();
     locationChangeListener.stopLocationChangeListener();
     returnMutableStatesToInitialValuesThisCodeIsFarFromBestPractices();
     yield InitialLocationTrackerState(initialCurrentTrip);
+  }
+}
+
+class Timer {
+  Stream<int> tick(){
+    int tck = 999999999999999999;
+    return Stream.periodic(Duration(seconds: 1), (x) => tck = x ).take(tck);
   }
 }

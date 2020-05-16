@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/constants.dart' as Constants;
 import 'package:mototracker/persistence/my_trip.dart';
 import 'package:provider/provider.dart';
@@ -17,31 +18,58 @@ class TripList extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            leading: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.black87,
+              leading: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black87,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/');
+                },
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/');
-              },
-            ),
-            expandedHeight: 220.0,
-            floating: true,
-            pinned: true,
-            snap: true,
-            elevation: 2,
-            backgroundColor: Colors.white,
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,
-              title: Text('My routes',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
-                  )),
-              //background: Colors.greenAccent,
-            ),
-          ),
+              expandedHeight: 220.0,
+              floating: true,
+              pinned: true,
+              snap: true,
+              elevation: 2,
+              backgroundColor: Colors.white,
+
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text('My rides'),
+                titlePadding: const EdgeInsets.only(bottom: 8.0),
+                centerTitle: true,
+                collapseMode: CollapseMode.parallax,
+//                background: Column(
+//                    mainAxisAlignment: MainAxisAlignment.center,
+//                    crossAxisAlignment: CrossAxisAlignment.center,
+//                    children: <Widget>[
+//                      Container(
+//                          margin: EdgeInsets.only(top: 16.0),
+//                          padding: EdgeInsets.only(left: 32.0, right: 32.0),
+//                          child: Text(
+//                            'Distance driven : 4320km',
+//                            textAlign: TextAlign.center,
+//                            style: TextStyle(
+//                                color: Colors.black87,
+//                                fontFamily: 'PlayfairDisplay',
+//                                fontStyle: FontStyle.italic,
+//                                fontSize: 16.0),
+//                          )),
+//                      Container(
+//                        margin: EdgeInsets.only(top: 16.0),
+//                        padding: EdgeInsets.only(left: 32.0, right: 32.0),
+//                        child: Text(
+//                          'Time on road spend: 234:45:53',
+//                          textAlign: TextAlign.center,
+//                          style: TextStyle(
+//                              color: Colors.black87,
+//                              fontFamily: 'PlayfairDisplay',
+//                              fontSize: 16.0),
+//                        ),
+//                      ),
+//                    ]
+//                ),
+              )),
           _buildTaskList(context),
         ],
       ),

@@ -21,6 +21,9 @@ class Duration extends StatelessWidget {
           return Container(
             child: Card(
               color: Constants.MAIN_CARD_COLOR,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(19.0),
+              ),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(1),

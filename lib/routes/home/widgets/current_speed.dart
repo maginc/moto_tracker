@@ -21,6 +21,9 @@ class CurrentSpeed extends StatelessWidget {
       return Container(
         child: Card(
           color: Constants.MAIN_CARD_COLOR,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(19.0),
+          ),
           child: Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
