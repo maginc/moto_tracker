@@ -36,7 +36,7 @@ class Distance extends StatelessWidget {
                         return RichText(
                           text: TextSpan(
                               style:
-                              TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 50),
+                              TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 45),
                               text: _distanceTExt(Utilities.showDistance(distance, text.data)),
                               children: [
                                 TextSpan(

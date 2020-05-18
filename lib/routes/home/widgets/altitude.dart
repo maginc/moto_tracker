@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
 import 'package:mototracker/constants.dart' as Constants;
+import 'package:mototracker/util/utilities.dart';
 
 
 /**
@@ -32,8 +33,8 @@ class Altitude extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                          style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 50),
-                          text: altitude.toString(),
+                          style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 60),
+                          text: Utilities.dp(altitude, 1).toString(),
                           children: [
                             TextSpan(text: "m", style: TextStyle(fontSize: 15))
                           ]),

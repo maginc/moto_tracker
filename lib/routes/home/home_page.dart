@@ -82,12 +82,6 @@ class _HomePageState extends State<HomePage> {
                         child: CurrentSpeed(),
                       ),
                     ),
-                    /*       VerticalDivider(
-                      thickness: 1,
-                      color: separatorLineColor,
-                      indent: 50,
-                      endIndent: 50,
-                    ),*/
                     Expanded(
                       child: Container(height: 200, child: Distance()),
                     )
@@ -95,12 +89,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            /*   Divider(
-              thickness: 1,
-              color: separatorLineColor,
-              indent: 100,
-              endIndent: 100,
-            ),*/
             Expanded(
               flex: 3,
               child: Container(
@@ -112,12 +100,6 @@ class _HomePageState extends State<HomePage> {
                         child: Altitude(),
                       ),
                     ),
-                    /*    VerticalDivider(
-                      thickness: 1,
-                      color: separatorLineColor,
-                      indent: 50,
-                      endIndent: 50,
-                    ),*/
                     Expanded(
                       child: Container(height: 200, child: Duration()),
                     )
@@ -125,12 +107,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            /*    Divider(
-              thickness: 1,
-              color: separatorLineColor,
-              indent: 100,
-              endIndent: 100,
-            ),*/
             Expanded(
               flex: 3,
               child: Container(
@@ -139,12 +115,6 @@ class _HomePageState extends State<HomePage> {
                     Expanded(
                       child: Container(height: 200, child: MaxSpeed()),
                     ),
-                    /*   VerticalDivider(
-                      thickness: 1,
-                      color: separatorLineColor,
-                      indent: 50,
-                      endIndent: 50,
-                    ),*/
                     Expanded(
                       child: Container(
                         height: 200,
@@ -162,7 +132,7 @@ class _HomePageState extends State<HomePage> {
           elevation: 0,
           shape: CircularNotchedRectangle(),
           child: Container(
-            height: 70.0,
+            height: 40.0,
           ),
         ),
         floatingActionButton:
@@ -184,18 +154,18 @@ class _HomePageState extends State<HomePage> {
     final LocationTrackerState currentState = locationTrackerBloc.state;
     if (currentState is InitialLocationTrackerState) {
       return Container(
-        height: 140,
-        width: 140,
+        height: 150,
+        width: 150,
         child: FittedBox(
           child: FloatingActionButton.extended(
             backgroundColor: Colors.red,
             icon: Icon(
               Icons.play_arrow,
-              size: 40,
+             // size: 50,
             ),
             label: Text(
               "GO!",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold)
             ),
             onPressed: () {
               locationTrackerBloc.add(Start());
@@ -265,7 +235,7 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Colors.red,
               child: Icon(
                 Icons.stop,
-                color: Colors.black87,
+                color: Colors.white,
               ),
               onPressed: () {
                 setState(() {

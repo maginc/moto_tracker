@@ -36,7 +36,7 @@ class CurrentSpeed extends StatelessWidget {
                         return RichText(
                           text: TextSpan(
                               style:
-                                  TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 50),
+                                  TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 60,),
                               text: Utilities.showSpeed(speed, text.data),
                               children: [
                                 TextSpan(

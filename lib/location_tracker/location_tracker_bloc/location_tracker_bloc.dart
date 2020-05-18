@@ -68,18 +68,12 @@ class LocationTrackerBloc
           duration
        */
 
-//    Stream.periodic(Duration(seconds: 1), (x) => x).listen((event) {
-//      this.duration ++;
-//    });
-
     _timerSubscription?.cancel();
     _timerSubscription = timerz.tick()
         .listen((event) {
-          print("EVE: " + event.toString());
           duration++;
         });
 
-   // DateTime.now().millisecond;
     /*
           get location changes
      */
@@ -124,10 +118,8 @@ class LocationTrackerBloc
       /*
           Average speed calculation
        */
-      print("dura:" + duration.toString());
-      print("dist:" + distance.toString());
 
-      if (distance > 0.03 && duration > 1) {
+      if (distance > 0.1 && duration > 1) {
         averageSpeed = (distance / (duration-1)) * 3600;
 
 
@@ -185,7 +177,6 @@ class LocationTrackerBloc
     locationChangeListener.stopLocationChangeListener();
     returnMutableStatesToInitialValuesThisCodeIsFarFromBestPractices();
     yield InitialLocationTrackerState(initialCurrentTrip);
-    //TODO implement cleaning old data and reset everything to initial state
   }
 
   //TODO replace this with proper solution, and i mean ALL this class.

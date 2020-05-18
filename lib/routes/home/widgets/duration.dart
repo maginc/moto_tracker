@@ -31,11 +31,14 @@ class Duration extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        RichText(
-                          text: TextSpan(
-                              style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 40),
-                              text: Utilities.secondsToTime(duration),
-                            ),
+                        FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: RichText(
+                            text: TextSpan(
+                                style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 40),
+                                text: Utilities.secondsToTime(duration),
+                              ),
+                          ),
                         ),
                         Text(
                           "Duration",
