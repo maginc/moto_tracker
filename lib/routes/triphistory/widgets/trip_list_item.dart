@@ -23,7 +23,7 @@ class TripListItem extends StatelessWidget {
                 builder: (context) => DetailsPage(myTripEntry: myTripEntry)));
       },
       child: Container(
-        color: Colors.white,
+        color: Constants.BACKGROUD_COLOR,
         child: Card(
           elevation: 2,
           color: Constants.MAIN_CARD_COLOR,
@@ -34,7 +34,8 @@ class TripListItem extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(children: [
+                child: Column(
+                    children: [
                   Text(
                     Utilities.formatDateLog(myTripEntry.dateAndTime),
                     style: TextStyle(
@@ -47,71 +48,79 @@ class TripListItem extends StatelessWidget {
                     indent: 60,
                     endIndent: 60,
                   ),
-                  Row(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/avg_speed.svg',
-                        color: Colors.white,
-                        semanticsLabel: 'A red up arrow',
-                        width: 35,
-                        height: 35,
+                      FutureBuilder(
+                          future: MySettings.getDistanceUnitsString(),
+                          // ignore: missing_return
+                          builder:
+                              (BuildContext context, AsyncSnapshot<String> text) {
+                            if (text.hasData) {
+                              return Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/distance.svg',
+                                    color: Constants.ICON_COLOR,
+                                    semanticsLabel: 'A red up arrow',
+                                    width: 35,
+                                    height: 35,
+                                  ),
+                                  Spacer(),
+                                  RichText(
+                                    text: TextSpan(
+                                        text: Utilities.dp(
+                                            Utilities.showDistance(
+                                                myTripEntry.distance,
+                                                text.data),
+                                            2)
+                                            .toString(),
+                                        style: TextStyle(
+                                            color: Constants.MAIN_TEXT_COLOR, fontSize: 30, fontWeight: FontWeight.bold),
+                                        children: [
+                                          TextSpan(
+                                              text: text.data,
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Constants.MAIN_TEXT_COLOR,
+                                                  fontWeight: FontWeight.bold))
+                                        ]),
+                                  ),
+                                  Spacer()
+                                ],
+                              );
+                            } else {
+                              return Container(
+                                color: Colors.transparent,
+                                width: 35,
+                                height: 35,
+                                child: new Padding(padding: const EdgeInsets.all(5.0),child: new Center(child: new CircularProgressIndicator())),
+                              );
+                            }
+                          }
                       ),
-                      Spacer(),
-                      Text(
-                        Utilities.secondsToTime(myTripEntry.duration)
-                            .toString(),
-                        style:
-                        TextStyle(fontSize: 30, color: Colors.tealAccent),
-                      ),
-                      Spacer()
-                    ],
-                  ),
+
                   Divider(
                     color: Colors.white,
                     indent: 120,
                     endIndent: 100,
                   ),
-                  FutureBuilder(
-                      future: MySettings.getDistanceUnitsString(),
-                      // ignore: missing_return
-                      builder:
-                          (BuildContext context, AsyncSnapshot<String> text) {
-                        if (text.hasData) {
-                          return Row(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/avg_speed.svg',
-                                color: Colors.white,
-                                semanticsLabel: 'A red up arrow',
-                                width: 35,
-                                height: 35,
-                              ),
-                              Spacer(),
-                              RichText(
-                                text: TextSpan(
-                                    text: Utilities.dp(
-                                        Utilities.showDistance(
-                                            myTripEntry.distance,
-                                            text.data),
-                                        2)
-                                        .toString(),
-                                    style: TextStyle(
-                                        color: Colors.tealAccent, fontSize: 30),
-                                    children: [
-                                      TextSpan(
-                                          text: text.data,
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              color: Colors.white))
-                                    ]),
-                              ),
-                              Spacer()
-                            ],
-                          );
-                        } else {
-                          return Container(width: 0.0, height: 0.0);
-                        }
-                      }),
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/duration.svg',
+                            color: Constants.ICON_COLOR,
+                            semanticsLabel: 'A red up arrow',
+                            width: 35,
+                            height: 35,
+                          ),
+                          Spacer(),
+                          Text(
+                            Utilities.secondsToTime(myTripEntry.duration)
+                                .toString(),
+                            style:
+                            TextStyle(fontSize: 30, color: Constants.MAIN_TEXT_COLOR, fontWeight: FontWeight.bold),
+                          ),
+                          Spacer()
+                        ],
+                      ),
                 ]),
               ),
             ],

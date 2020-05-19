@@ -33,7 +33,7 @@ class Altitude extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                          style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 60),
+                          style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 60,fontWeight: FontWeight.bold),
                           text: Utilities.dp(altitude, 1).toString(),
                           children: [
                             TextSpan(text: "m", style: TextStyle(fontSize: 15))

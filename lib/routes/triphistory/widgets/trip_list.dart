@@ -15,30 +15,32 @@ class TripList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constants.BACKGROUD_COLOR,
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-              leading: IconButton(
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.black87,
+      body: Container(
+        color: Constants.BACKGROUD_COLOR,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.black87,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
                 ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/');
-                },
-              ),
-              expandedHeight: 220.0,
-              floating: true,
-              pinned: true,
-              snap: true,
-              elevation: 2,
-              backgroundColor: Colors.white,
+                expandedHeight: 220.0,
+                floating: true,
+                pinned: true,
+                snap: true,
+                elevation: 1,
+                backgroundColor: Constants.BACKGROUD_COLOR,
 
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text('My rides'),
-                titlePadding: const EdgeInsets.only(bottom: 8.0),
-                centerTitle: true,
-                collapseMode: CollapseMode.parallax,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: Text('My rides'),
+                  titlePadding: const EdgeInsets.only(bottom: 8.0),
+                  centerTitle: true,
+                  collapseMode: CollapseMode.parallax,
 //                background: Column(
 //                    mainAxisAlignment: MainAxisAlignment.center,
 //                    crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,9 +71,12 @@ class TripList extends StatelessWidget {
 //                      ),
 //                    ]
 //                ),
-              )),
-          _buildTaskList(context),
-        ],
+                )
+            ),
+
+            _buildTaskList(context),
+          ],
+        ),
       ),
     );
   }
@@ -85,6 +90,7 @@ class TripList extends StatelessWidget {
         final trips = tripList.reversed.toList();
 
         return SliverList(
+
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               database.close();

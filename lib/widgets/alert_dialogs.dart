@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
 import 'package:mototracker/persistence/my_trip.dart';
 import 'package:provider/provider.dart';
+import 'package:mototracker/constants.dart' as Constants;
+
 
 
 //TODO make use of bloc for database operations
@@ -17,8 +19,9 @@ class AlertDialogs {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            backgroundColor: Constants.BACKGROUD_COLOR,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(32.0))),
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
             contentPadding: EdgeInsets.only(top: 10.0),
             content: Container(
               width: 300.0,
@@ -32,24 +35,35 @@ class AlertDialogs {
                     child: Center(
                         child: Text(
                           "Delte this trip?",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0, color: Constants.MAIN_TEXT_COLOR),
                         )),
                   ),
                   Divider(
                     color: Colors.white,
                     height: 10.0,
                   ),
-                  SizedBox(
-                    height: 150,
-                    child: Padding(
-                        padding: EdgeInsets.only(left: 30.0, right: 30.0),
-                        child: RichText(
-                          text: TextSpan(
-                              text: "Are you sure want to delete this trip?",
-                              style: TextStyle(
-                                //fontWeight: FontWeight.bold,
-                                  color: Colors.black87)),
-                        )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                          color: Constants.MAIN_CARD_COLOR
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        child: Padding(
+                            padding: EdgeInsets.all(40.0),
+                            child: RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                  text: "Are you sure want to delete this trip?",
+                                  style: TextStyle(
+                                    //fontWeight: FontWeight.bold,
+                                      color: Constants.MAIN_TEXT_COLOR, fontSize: 20)),
+                            )),
+                      ),
+                    ),
                   ),
                   Row(
                     children: <Widget>[
@@ -67,13 +81,13 @@ class AlertDialogs {
                             decoration: BoxDecoration(
                               color: myColor,
                               borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(22.0),
+                                bottomLeft: Radius.circular(15.0),
                                 // bottomRight: Radius.circular(32.0)
                               ),
                             ),
                             child: Text(
                               "Delete",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white, fontSize: 25),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -88,11 +102,11 @@ class AlertDialogs {
                               color: Colors.green,
                               borderRadius: BorderRadius.only(
                                 //bottomLeft: Radius.circular(32.0),
-                                  bottomRight: Radius.circular(22.0)),
+                                  bottomRight: Radius.circular(15.0)),
                             ),
                             child: Text(
                               "Cancel",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.white, fontSize: 25),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -118,8 +132,9 @@ class AlertDialogs {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            backgroundColor: Constants.BACKGROUD_COLOR,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(32.0))),
+                borderRadius: BorderRadius.all(Radius.circular(15.0))),
             contentPadding: EdgeInsets.only(top: 10.0),
             content: Container(
               width: 300.0,
@@ -134,31 +149,42 @@ class AlertDialogs {
                         child: Text(
                           "Save current trip?",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 25.0),
+                              fontWeight: FontWeight.bold, fontSize: 25.0, color: Constants.MAIN_TEXT_COLOR),
                         )),
                   ),
                   Divider(
                     color: Colors.white,
                     height: 10.0,
                   ),
-                  SizedBox(
-                    height: 150,
-                    child: Padding(
-                        padding: EdgeInsets.only(left: 30.0, right: 30.0),
-                        child: Center(
-                          child: RichText(
-                            text: TextSpan(
-                                text: "Trip will be finished \n",
-                                style: TextStyle(
-                                  //fontWeight: FontWeight.bold,
-                                    color: Colors.black87)
-                                ,
-                                children: [
-                                  TextSpan(text: "and saved!")
-                                ]
-                            ),
-                          ),
-                        )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                       // border: Border.all(),
+                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                        color: Constants.MAIN_CARD_COLOR
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 30.0, right: 30.0),
+                            child: Center(
+                              child: RichText(
+                                textAlign: TextAlign.center,
+                                text: TextSpan(
+                                    text: "Trip will be finished \n",
+                                    style: TextStyle(
+                                      //fontWeight: FontWeight.bold,
+                                        color: Constants.MAIN_TEXT_COLOR, fontSize: 25, )
+                                    ,
+                                    children: [
+                                      TextSpan(text: "and saved!")
+                                    ]
+                                ),
+                              ),
+                            )),
+                      ),
+                    ),
                   ),
                   Row(
                     children: <Widget>[
@@ -174,14 +200,14 @@ class AlertDialogs {
                             decoration: BoxDecoration(
                               color: myColor,
                               borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(22.0),
+                                bottomLeft: Radius.circular(15.0),
                                 // bottomRight: Radius.circular(32.0)
                               ),
                             ),
                             child: Text(
                               "Discard",
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 20),
+                                  color: Colors.white, fontSize: 25),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -200,12 +226,12 @@ class AlertDialogs {
                               color: Colors.green,
                               borderRadius: BorderRadius.only(
                                 //bottomLeft: Radius.circular(32.0),
-                                  bottomRight: Radius.circular(22.0)),
+                                  bottomRight: Radius.circular(15.0)),
                             ),
                             child: Text(
                               "Save",
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 20),
+                                  color: Colors.white, fontSize: 25),
                               textAlign: TextAlign.center,
                             ),
                           ),

@@ -21,18 +21,22 @@ class DurationDetails extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(6.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-           /* Icon(
+            /*    Icon(
               Icons.timer,
               size: 40,
               color: Constants.BACKGROUD_COLOR,
             ),*/
+            SizedBox(
+              width: 30,
+            ),
             SvgPicture.asset(
-              'assets/avg_speed.svg',
-              color: Colors.white,
+              'assets/duration.svg',
+              color: Constants.ICON_COLOR,
               semanticsLabel: 'A red up arrow',
-              width: 50,
-              height: 50,
+              width: 45,
+              height: 45,
             ),
             Spacer(),
             FutureBuilder(
@@ -44,7 +48,8 @@ class DurationDetails extends StatelessWidget {
                       children: [
                         RichText(
                           text: TextSpan(
-                              text: Utilities.secondsToTime(myTripEntry.duration),
+                              text:
+                                  Utilities.secondsToTime(myTripEntry.duration),
                               style: TextStyle(
                                   fontSize: 35,
                                   color: Constants.MAIN_TEXT_COLOR,
@@ -52,7 +57,9 @@ class DurationDetails extends StatelessWidget {
                         ),
                         Text(
                           'Duration',
-                          style: TextStyle(color: Constants.SECONDARY_TEXT_COLOR, fontSize: 15),
+                          style: TextStyle(
+                              color: Constants.SECONDARY_TEXT_COLOR,
+                              fontSize: 15),
                         )
                       ],
                     );
@@ -60,7 +67,7 @@ class DurationDetails extends StatelessWidget {
                     return Container(width: 0.0, height: 0.0);
                   }
                 }),
-            Spacer(),
+            Spacer(flex: 3,),
           ],
         ),
       ),

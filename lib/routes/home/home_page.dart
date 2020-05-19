@@ -130,9 +130,10 @@ class _HomePageState extends State<HomePage> {
         ),
         bottomNavigationBar: BottomAppBar(
           elevation: 0,
+          color: Colors.transparent,
           shape: CircularNotchedRectangle(),
           child: Container(
-            height: 40.0,
+            height: 70.0,
           ),
         ),
         floatingActionButton:

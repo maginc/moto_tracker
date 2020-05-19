@@ -35,7 +35,7 @@ class Duration extends StatelessWidget {
                           fit: BoxFit.fitWidth,
                           child: RichText(
                             text: TextSpan(
-                                style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 40),
+                                style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 40,fontWeight: FontWeight.bold),
                                 text: Utilities.secondsToTime(duration),
                               ),
                           ),

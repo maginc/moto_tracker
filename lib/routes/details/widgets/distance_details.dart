@@ -22,18 +22,22 @@ class DistanceDetails extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(6.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
          /*   Icon(
               Icons.gps_fixed,
               size: 40,
               color: Constants.MAIN_TEXT_COLOR,
             ),*/
+         SizedBox(
+           width: 30,
+         ),
             SvgPicture.asset(
-              'assets/avg_speed.svg',
-              color: Colors.white,
+              'assets/distance.svg',
+              color: Colors.red,
               semanticsLabel: 'A red up arrow',
-              width: 50,
-              height: 50,
+              width: 45,
+              height: 45,
             ),
             Spacer(),
             FutureBuilder(
@@ -70,7 +74,7 @@ class DistanceDetails extends StatelessWidget {
                     return Container(width: 0.0, height: 0.0);
                   }
                 }),
-            Spacer(),
+            Spacer(flex: 2,),
           ],
         ),
       ),

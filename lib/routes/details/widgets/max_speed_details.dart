@@ -21,18 +21,22 @@ class MaxSpeedDetails extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
           /*  Icon(
               Icons.av_timer,
               size: 40,
               color: Constants.BACKGROUD_COLOR,
             ),*/
+         SizedBox(
+           width: 30,
+         ),
             SvgPicture.asset(
-              'assets/avg_speed.svg',
-              color: Colors.white,
+              'assets/max_speed.svg',
+              color: Constants.ICON_COLOR,
               semanticsLabel: 'A red up arrow',
-              width: 50,
-              height: 50,
+              width: 45,
+              height: 45,
             ),
             Spacer(),
             FutureBuilder(
@@ -60,7 +64,7 @@ class MaxSpeedDetails extends StatelessWidget {
                     return Container(width: 0.0, height: 0.0);
                   }
                 }),
-            Spacer(),
+            Spacer(flex: 2,),
           ],
         ),
       ),

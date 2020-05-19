@@ -113,7 +113,7 @@ class ShowDetails extends StatelessWidget {
                 right: 0.0,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Constants.BACKGROUD_COLOR,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),

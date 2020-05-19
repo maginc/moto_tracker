@@ -36,7 +36,7 @@ class AvgSpeed extends StatelessWidget {
                         return RichText(
                           text: TextSpan(
                               style:
-                                  TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 60),
+                                  TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 60,fontWeight: FontWeight.bold),
                               text: showAvgSpeed(averageSpeed, text.data),
                               children: [
                                 TextSpan(

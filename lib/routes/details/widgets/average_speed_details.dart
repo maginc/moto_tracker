@@ -28,13 +28,15 @@ class AverageSpeedDetails extends StatelessWidget {
               size: 40,
               color: Constants.BACKGROUD_COLOR,
             ),*/
-
+            SizedBox(
+              width: 30,
+            ),
             SvgPicture.asset(
               'assets/avg_speed.svg',
-              color: Colors.white,
+              color: Constants.ICON_COLOR,
               semanticsLabel: 'A red up arrow',
-              width: 50,
-              height: 50,
+              width: 45,
+              height: 45,
             ),
             Spacer(),
             FutureBuilder(
@@ -70,7 +72,7 @@ class AverageSpeedDetails extends StatelessWidget {
                     return Container(width: 0.0, height: 0.0);
                   }
                 }),
-            Spacer(),
+            Spacer(flex: 2,),
           ],
         ),
       ),
