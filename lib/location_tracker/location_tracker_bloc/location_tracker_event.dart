@@ -17,6 +17,7 @@ class Resume extends LocationTrackerEvent {}
 class Save extends LocationTrackerEvent {}
 
 class Finish extends LocationTrackerEvent {}
+
 class LocationChange extends LocationTrackerEvent {
   final CurrentTrip currentTrip;
 

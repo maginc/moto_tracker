@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
 import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
@@ -48,7 +47,7 @@ class CurrentSpeed extends StatelessWidget {
                       }),
                   Text(
                     "Speed",
-                    style: GoogleFonts.robotoMono(fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
+                    style: TextStyle(fontFamily:'RobotoMono',fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
                   )
                 ]),
           ),

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/bloc.dart';
 import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
 import 'package:mototracker/constants.dart' as Constants;
-
 
 /**
  *Created by Andris on 20-Apr-20
@@ -35,25 +33,31 @@ class Distance extends StatelessWidget {
                           (BuildContext context, AsyncSnapshot<String> text) {
                         return RichText(
                           text: TextSpan(
-                              style:
-                              TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 45,fontWeight: FontWeight.bold),
-                              text: _distanceTExt(Utilities.showDistance(distance, text.data)),
+                              style: TextStyle(
+                                  color: Constants.MAIN_TEXT_COLOR,
+                                  fontSize: 45,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: -3),
+                              text: _distanceTExt(
+                                  Utilities.showDistance(distance, text.data)),
                               children: [
                                 TextSpan(
                                     text: text.data,
-                                    style: TextStyle(fontSize: 15))
+                                    style: TextStyle(
+                                        fontSize: 15, letterSpacing: 0.0))
                               ]),
                         );
-                      }),
+                      }
+                      ),
                   Text(
                     "Distance",
-                    style: GoogleFonts.robotoMono(fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
+                    style: TextStyle(fontFamily:'RobotoMono',
+                        fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
                   )
                 ]),
           ),
         ),
         width: double.infinity,
-
       );
     });
   }

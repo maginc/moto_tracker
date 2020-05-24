@@ -21,39 +21,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool running = false;
-
+  DateTime currentBackPressTime;
   @override
   Widget build(BuildContext context) {
     const separatorLineColor = Colors.redAccent;
-    return Scaffold(
-        backgroundColor: Constants.BACKGROUD_COLOR,
-        appBar: AppBar(
-          //backgroundColor: Colors.white,
-          elevation: 0,
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              icon: Icon(
-                Icons.format_align_left,
-                color: Colors.black87,
-                size: 30,
-              ),
-              onPressed: () {
-                if (!running) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => TripListPage()),
-                  );
-                }
-              },
-            ),
-          ),
-          actions: [
-            Padding(
+    return WillPopScope(
+      onWillPop: (){
+        onWillPop();
+      },
+      child: Scaffold(
+          backgroundColor: Constants.BACKGROUD_COLOR,
+          appBar: AppBar(
+            //backgroundColor: Colors.white,
+            elevation: 0,
+            leading: Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                 icon: Icon(
-                  Icons.tune,
+                  Icons.format_align_left,
                   color: Colors.black87,
                   size: 30,
                 ),
@@ -61,94 +46,125 @@ class _HomePageState extends State<HomePage> {
                   if (!running) {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SettingsPage()),
+                      MaterialPageRoute(builder: (context) => TripListPage()),
                     );
                   }
                 },
               ),
             ),
-          ],
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 3,
-              child: Container(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: CurrentSpeed(),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(height: 200, child: Distance()),
-                    )
-                  ],
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.tune,
+                    color: Colors.black87,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    if (!running) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SettingsPage()),
+                      );
+                    }
+                  },
                 ),
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: Altitude(),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(height: 200, child: Duration()),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(height: 200, child: MaxSpeed()),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 200,
-                        child: AvgSpeed(),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Spacer()
-          ],
-        ),
-        bottomNavigationBar: BottomAppBar(
-          elevation: 0,
-          color: Colors.transparent,
-          shape: CircularNotchedRectangle(),
-          child: Container(
-            height: 70.0,
+            ],
           ),
-        ),
-        floatingActionButton:
-            BlocBuilder<LocationTrackerBloc, LocationTrackerState>(
-          condition: (previousState, state) =>
-              state.runtimeType != previousState.runtimeType,
-          builder: (context, state) => _mapStateToActionButtons(
-              locationTrackerBloc:
-                  BlocProvider.of<LocationTrackerBloc>(context),
-              context: context),
-        ),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked);
+          body: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 3,
+                child: Container(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 200,
+                          child: CurrentSpeed(),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(height: 200, child: MaxSpeed()),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 200,
+                          child: Distance(),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(height: 200, child: DurationHome()),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(height: 200, child: Altitude()),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 200,
+                          child: AvgSpeed(),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Spacer()
+            ],
+          ),
+          bottomNavigationBar: BottomAppBar(
+            elevation: 0,
+            color: Colors.transparent,
+            shape: CircularNotchedRectangle(),
+            child: Container(
+              height: 70.0,
+            ),
+          ),
+          floatingActionButton:
+              BlocBuilder<LocationTrackerBloc, LocationTrackerState>(
+            condition: (previousState, state) =>
+                state.runtimeType != previousState.runtimeType,
+            builder: (context, state) => _mapStateToActionButtons(
+                locationTrackerBloc:
+                    BlocProvider.of<LocationTrackerBloc>(context),
+                context: context),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked),
+    );
   }
 
+  Future<bool> onWillPop() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      //Fluttertoast.showToast(msg: exit_warning);
+      AlertDialogs.appExitDialog(context);
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
 //TODO move controls to another file
   _mapStateToActionButtons(
       {LocationTrackerBloc locationTrackerBloc, BuildContext context}) {

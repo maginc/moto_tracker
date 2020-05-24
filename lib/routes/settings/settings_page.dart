@@ -37,7 +37,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return WillPopScope(
       // ignore: missing_return
       onWillPop: () {
-        print("back vutton pressed!!");
         Navigator.pushNamed(context, '/');
       },
       child: Scaffold(
@@ -74,7 +73,8 @@ class _SettingsPageState extends State<SettingsPage> {
                                   text: _units,
                                   style: TextStyle(
                                       fontSize: 15,
-                                      fontWeight: FontWeight.normal))
+                                      fontWeight: FontWeight.bold,
+                                  color: Constants.SECONDARY_TEXT_COLOR))
                             ],
                             text: "Units\n",
                             style: TextStyle(
@@ -103,7 +103,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               child: Text(
                             "Imperial",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20.0),
+                                fontWeight: FontWeight.bold, fontSize: 20.0,),
                           )),
                         )
                       ],
@@ -120,8 +120,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         setUnits();
                       },
                       isSelected: isSelected,
-                      selectedColor: Colors.tealAccent,
-                      fillColor: Colors.blueGrey,
+                      selectedColor: Constants.MAIN_TEXT_COLOR,
+                      fillColor: Constants.MAIN_CARD_COLOR,
                     ),
 
                     /*

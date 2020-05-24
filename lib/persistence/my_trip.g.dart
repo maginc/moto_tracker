@@ -46,6 +46,56 @@ class MyTripEntry extends DataClass implements Insertable<MyTripEntry> {
           stringType.mapFromDatabaseResponse(data['${effectivePrefix}route']),
     );
   }
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (!nullToAbsent || id != null) {
+      map['id'] = Variable<int>(id);
+    }
+    if (!nullToAbsent || dateAndTime != null) {
+      map['date_and_time'] = Variable<DateTime>(dateAndTime);
+    }
+    if (!nullToAbsent || distance != null) {
+      map['distance'] = Variable<double>(distance);
+    }
+    if (!nullToAbsent || maxSpeed != null) {
+      map['max_speed'] = Variable<double>(maxSpeed);
+    }
+    if (!nullToAbsent || duration != null) {
+      map['duration'] = Variable<int>(duration);
+    }
+    if (!nullToAbsent || averageSpeed != null) {
+      map['average_speed'] = Variable<double>(averageSpeed);
+    }
+    if (!nullToAbsent || route != null) {
+      map['route'] = Variable<String>(route);
+    }
+    return map;
+  }
+
+  MyTripCompanion toCompanion(bool nullToAbsent) {
+    return MyTripCompanion(
+      id: id == null && nullToAbsent ? const Value.absent() : Value(id),
+      dateAndTime: dateAndTime == null && nullToAbsent
+          ? const Value.absent()
+          : Value(dateAndTime),
+      distance: distance == null && nullToAbsent
+          ? const Value.absent()
+          : Value(distance),
+      maxSpeed: maxSpeed == null && nullToAbsent
+          ? const Value.absent()
+          : Value(maxSpeed),
+      duration: duration == null && nullToAbsent
+          ? const Value.absent()
+          : Value(duration),
+      averageSpeed: averageSpeed == null && nullToAbsent
+          ? const Value.absent()
+          : Value(averageSpeed),
+      route:
+          route == null && nullToAbsent ? const Value.absent() : Value(route),
+    );
+  }
+
   factory MyTripEntry.fromJson(Map<String, dynamic> json,
       {ValueSerializer serializer}) {
     serializer ??= moorRuntimeOptions.defaultSerializer;
@@ -71,30 +121,6 @@ class MyTripEntry extends DataClass implements Insertable<MyTripEntry> {
       'averageSpeed': serializer.toJson<double>(averageSpeed),
       'route': serializer.toJson<String>(route),
     };
-  }
-
-  @override
-  MyTripCompanion createCompanion(bool nullToAbsent) {
-    return MyTripCompanion(
-      id: id == null && nullToAbsent ? const Value.absent() : Value(id),
-      dateAndTime: dateAndTime == null && nullToAbsent
-          ? const Value.absent()
-          : Value(dateAndTime),
-      distance: distance == null && nullToAbsent
-          ? const Value.absent()
-          : Value(distance),
-      maxSpeed: maxSpeed == null && nullToAbsent
-          ? const Value.absent()
-          : Value(maxSpeed),
-      duration: duration == null && nullToAbsent
-          ? const Value.absent()
-          : Value(duration),
-      averageSpeed: averageSpeed == null && nullToAbsent
-          ? const Value.absent()
-          : Value(averageSpeed),
-      route:
-          route == null && nullToAbsent ? const Value.absent() : Value(route),
-    );
   }
 
   MyTripEntry copyWith(
@@ -183,6 +209,26 @@ class MyTripCompanion extends UpdateCompanion<MyTripEntry> {
         duration = Value(duration),
         averageSpeed = Value(averageSpeed),
         route = Value(route);
+  static Insertable<MyTripEntry> custom({
+    Expression<int> id,
+    Expression<DateTime> dateAndTime,
+    Expression<double> distance,
+    Expression<double> maxSpeed,
+    Expression<int> duration,
+    Expression<double> averageSpeed,
+    Expression<String> route,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (dateAndTime != null) 'date_and_time': dateAndTime,
+      if (distance != null) 'distance': distance,
+      if (maxSpeed != null) 'max_speed': maxSpeed,
+      if (duration != null) 'duration': duration,
+      if (averageSpeed != null) 'average_speed': averageSpeed,
+      if (route != null) 'route': route,
+    });
+  }
+
   MyTripCompanion copyWith(
       {Value<int> id,
       Value<DateTime> dateAndTime,
@@ -200,6 +246,33 @@ class MyTripCompanion extends UpdateCompanion<MyTripEntry> {
       averageSpeed: averageSpeed ?? this.averageSpeed,
       route: route ?? this.route,
     );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (dateAndTime.present) {
+      map['date_and_time'] = Variable<DateTime>(dateAndTime.value);
+    }
+    if (distance.present) {
+      map['distance'] = Variable<double>(distance.value);
+    }
+    if (maxSpeed.present) {
+      map['max_speed'] = Variable<double>(maxSpeed.value);
+    }
+    if (duration.present) {
+      map['duration'] = Variable<int>(duration.value);
+    }
+    if (averageSpeed.present) {
+      map['average_speed'] = Variable<double>(averageSpeed.value);
+    }
+    if (route.present) {
+      map['route'] = Variable<String>(route.value);
+    }
+    return map;
   }
 }
 
@@ -302,47 +375,50 @@ class $MyTripTable extends MyTrip with TableInfo<$MyTripTable, MyTripEntry> {
   @override
   final String actualTableName = 'my_trip';
   @override
-  VerificationContext validateIntegrity(MyTripCompanion d,
+  VerificationContext validateIntegrity(Insertable<MyTripEntry> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
-    if (d.id.present) {
-      context.handle(_idMeta, id.isAcceptableValue(d.id.value, _idMeta));
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id'], _idMeta));
     }
-    if (d.dateAndTime.present) {
-      context.handle(_dateAndTimeMeta,
-          dateAndTime.isAcceptableValue(d.dateAndTime.value, _dateAndTimeMeta));
+    if (data.containsKey('date_and_time')) {
+      context.handle(
+          _dateAndTimeMeta,
+          dateAndTime.isAcceptableOrUnknown(
+              data['date_and_time'], _dateAndTimeMeta));
     } else if (isInserting) {
       context.missing(_dateAndTimeMeta);
     }
-    if (d.distance.present) {
+    if (data.containsKey('distance')) {
       context.handle(_distanceMeta,
-          distance.isAcceptableValue(d.distance.value, _distanceMeta));
+          distance.isAcceptableOrUnknown(data['distance'], _distanceMeta));
     } else if (isInserting) {
       context.missing(_distanceMeta);
     }
-    if (d.maxSpeed.present) {
+    if (data.containsKey('max_speed')) {
       context.handle(_maxSpeedMeta,
-          maxSpeed.isAcceptableValue(d.maxSpeed.value, _maxSpeedMeta));
+          maxSpeed.isAcceptableOrUnknown(data['max_speed'], _maxSpeedMeta));
     } else if (isInserting) {
       context.missing(_maxSpeedMeta);
     }
-    if (d.duration.present) {
+    if (data.containsKey('duration')) {
       context.handle(_durationMeta,
-          duration.isAcceptableValue(d.duration.value, _durationMeta));
+          duration.isAcceptableOrUnknown(data['duration'], _durationMeta));
     } else if (isInserting) {
       context.missing(_durationMeta);
     }
-    if (d.averageSpeed.present) {
+    if (data.containsKey('average_speed')) {
       context.handle(
           _averageSpeedMeta,
-          averageSpeed.isAcceptableValue(
-              d.averageSpeed.value, _averageSpeedMeta));
+          averageSpeed.isAcceptableOrUnknown(
+              data['average_speed'], _averageSpeedMeta));
     } else if (isInserting) {
       context.missing(_averageSpeedMeta);
     }
-    if (d.route.present) {
+    if (data.containsKey('route')) {
       context.handle(
-          _routeMeta, route.isAcceptableValue(d.route.value, _routeMeta));
+          _routeMeta, route.isAcceptableOrUnknown(data['route'], _routeMeta));
     } else if (isInserting) {
       context.missing(_routeMeta);
     }
@@ -355,34 +431,6 @@ class $MyTripTable extends MyTrip with TableInfo<$MyTripTable, MyTripEntry> {
   MyTripEntry map(Map<String, dynamic> data, {String tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
     return MyTripEntry.fromData(data, _db, prefix: effectivePrefix);
-  }
-
-  @override
-  Map<String, Variable> entityToSql(MyTripCompanion d) {
-    final map = <String, Variable>{};
-    if (d.id.present) {
-      map['id'] = Variable<int, IntType>(d.id.value);
-    }
-    if (d.dateAndTime.present) {
-      map['date_and_time'] =
-          Variable<DateTime, DateTimeType>(d.dateAndTime.value);
-    }
-    if (d.distance.present) {
-      map['distance'] = Variable<double, RealType>(d.distance.value);
-    }
-    if (d.maxSpeed.present) {
-      map['max_speed'] = Variable<double, RealType>(d.maxSpeed.value);
-    }
-    if (d.duration.present) {
-      map['duration'] = Variable<int, IntType>(d.duration.value);
-    }
-    if (d.averageSpeed.present) {
-      map['average_speed'] = Variable<double, RealType>(d.averageSpeed.value);
-    }
-    if (d.route.present) {
-      map['route'] = Variable<String, StringType>(d.route.value);
-    }
-    return map;
   }
 
   @override

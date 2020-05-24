@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/constants.dart' as Constants;
 import 'package:mototracker/persistence/my_trip.dart';
 import 'package:provider/provider.dart';

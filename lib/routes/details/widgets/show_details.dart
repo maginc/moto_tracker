@@ -120,7 +120,7 @@ class ShowDetails extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           Utilities.formatDateLog(
                               myTripEntry.dateAndTime),
@@ -131,7 +131,7 @@ class ShowDetails extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(2.0),
                         child: Column(
                           children: <Widget>[
                             DistanceDetails(

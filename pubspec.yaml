@@ -1,5 +1,5 @@
 name: mototracker
-description: A new Flutter application.
+description: Track your ride
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -27,19 +27,18 @@ dependencies:
   equatable: ^1.1.1
   background_locator: 1.1.2+2
   location_permissions: ^2.0.5
-  path_provider: ^1.6.7
+  path_provider: ^1.6.9
   meta: ^1.1.8
-  google_fonts: ^1.0.0
-  rxdart: ^0.24.0
-  moor_ffi: ^0.4.0
-  moor: ^2.4.2
-  path: ^1.6.4
-  provider: ^4.0.5+1
+  rxdart: ^0.24.1
+  moor_ffi: ^0.6.0
+  moor: ^3.1.0
+  path: ^1.7.0
+  provider: ^4.1.2
   flutter_slidable: ^0.5.4
   json_serializable: ^3.3.0
   flutter_map: ^0.9.0
   latlong: ^0.6.1
-  shared_preferences: ^0.5.7
+  shared_preferences: ^0.5.7+3
   flutter_svg: ^0.17.4
 
 
@@ -50,11 +49,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  moor_generator: ^2.4.0
-  build_runner: ^1.9.0
+  moor_generator: ^3.1.0
+  build_runner: ^1.10.0
+  flutter_launcher_icons: ^0.7.5
 
 
-
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app_icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -83,10 +86,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: RobotoMono
+      fonts:
+        - asset: fonts/RobotoMono-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/location_tracker_bloc.dart';
 import 'package:mototracker/location_tracker/location_tracker_bloc/location_tracker_state.dart';
 import 'package:mototracker/util/utilities.dart';
@@ -11,7 +10,7 @@ import 'package:mototracker/constants.dart' as Constants;
 /**
  *Created by Andris on 20-Apr-20
  */
-class Duration extends StatelessWidget {
+class DurationHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LocationTrackerBloc, LocationTrackerState>(
@@ -35,14 +34,15 @@ class Duration extends StatelessWidget {
                           fit: BoxFit.fitWidth,
                           child: RichText(
                             text: TextSpan(
-                                style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 40,fontWeight: FontWeight.bold),
+                                style: TextStyle(color: Constants.MAIN_TEXT_COLOR, fontSize: 40,fontWeight: FontWeight.bold,
+                                letterSpacing: -3),
                                 text: Utilities.secondsToTime(duration),
                               ),
                           ),
                         ),
                         Text(
                           "Duration",
-                          style: GoogleFonts.robotoMono(fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
+                          style: TextStyle(fontFamily:'RobotoMono',fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR, letterSpacing: 0.0),
                         )
                       ]),
                 ),

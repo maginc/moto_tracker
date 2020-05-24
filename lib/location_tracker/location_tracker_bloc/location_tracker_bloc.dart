@@ -120,9 +120,7 @@ class LocationTrackerBloc
        */
 
       if (distance > 0.1 && duration > 1) {
-        averageSpeed = (distance / (duration-1)) * 3600;
-
-
+        averageSpeed = (distance / (duration)) * 3600;
       }
       add(LocationChange(CurrentTrip(
         coordinateList: coordinateList,
@@ -201,7 +199,7 @@ class LocationTrackerBloc
 
 class Timer {
   Stream<int> tick(){
-    int tck = 999999999999999999;
+    int tck = 999999;
     return Stream.periodic(Duration(seconds: 1), (x) => tck = x ).take(tck);
   }
 }
