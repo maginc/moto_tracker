@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mototracker/constants.dart' as Constants;
+import 'package:mototracker/routes/details/widgets/map_full_screen.dart';
 import 'package:mototracker/routes/settings/settings_page.dart';
 import 'package:mototracker/routes/triphistory/trip_list_page.dart';
 import 'package:mototracker/util/permissions.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/trip_list_page': (context) => TripListPage(),
-        '/settings_page': (context) => SettingsPage()
+        '/settings_page': (context) => SettingsPage(),
+        '/map_full_screen': (context) => MapFullScreen()
       },
       theme: ThemeData(
           pageTransitionsTheme: PageTransitionsTheme(builders: {

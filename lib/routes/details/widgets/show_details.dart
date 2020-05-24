@@ -8,6 +8,7 @@ import 'package:mototracker/model/current_trip.dart';
 import 'package:mototracker/persistence/my_trip.dart';
 import 'package:mototracker/persistence/route.dart';
 import 'package:mototracker/routes/details/widgets/duration_details.dart';
+import 'package:mototracker/routes/details/widgets/map_full_screen.dart';
 import 'package:mototracker/util/settings.dart';
 import 'package:mototracker/util/utilities.dart';
 import 'package:mototracker/widgets/widgets.dart';
@@ -63,6 +64,7 @@ class ShowDetails extends StatelessWidget {
         children: [
           Expanded(
             child: Stack(children: [
+
               Positioned(
                 child: Container(
                   height: 550,
@@ -104,6 +106,18 @@ class ShowDetails extends StatelessWidget {
                       ),
                     ],
                   ),
+                ),
+              ),
+              Positioned(
+                bottom: 430,
+                right: 20,
+                child: IconButton(
+                  onPressed: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MapFullScreen(pointForPolyline: pointForPolyline,)));
+                  },
+                  icon: Icon(Icons.fullscreen,size: 60)
                 ),
               ),
               Positioned(
