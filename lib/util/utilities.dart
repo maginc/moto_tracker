@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:background_locator/location_dto.dart';
+import 'package:latlong/latlong.dart';
 import 'package:moor/moor.dart';
 
 class Utilities {
@@ -18,6 +19,33 @@ class Utilities {
     } else {
       return Utilities.msToMph(speed).toString();
     }
+  }
+  static List<double> centroid(List<LatLng> points) {
+    var centroid = [ 0.0, 0.0 ];
+
+    for (int i = 0; i < points.length; i++) {
+      centroid[0] += points[i].latitude;
+      centroid[1] += points[i].longitude;
+    }
+
+    int totalPoints = points.length;
+    centroid[0] = centroid[0] / totalPoints;
+    centroid[1] = centroid[1] / totalPoints;
+
+    return centroid;
+  }
+  static double calculateZoom(double distance){
+    double result = 12.0;
+    if(distance<=10){
+      result = 12.0;
+    } else if ( distance > 10 && distance < 20){
+      result = 11.0;
+    } else if (distance >= 20 && distance < 40){
+      result = 10.0;
+    } else if (distance >=40){
+      result = 9.0;
+    }
+    return result;
   }
 
   static double showDistance(double distance, String units) {

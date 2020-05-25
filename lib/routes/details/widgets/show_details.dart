@@ -35,7 +35,8 @@ class ShowDetails extends StatelessWidget {
     for (Coordinate coordinate in route.listOfCoordinates) {
       pointForPolyline.add(LatLng(coordinate.latitude, coordinate.longitude));
     }
-
+    var centre = Utilities.centroid(pointForPolyline);
+    var zoom = Utilities.calculateZoom(myTripEntry.distance);
     return Scaffold(
       //backgroundColor: Constants.BACKGROUD_COLOR,
       extendBodyBehindAppBar: true,
@@ -73,9 +74,8 @@ class ShowDetails extends StatelessWidget {
                   height:  MediaQuery.of(context).size.height/2+85,
                   child: FlutterMap(
                     options: MapOptions(
-                        center: pointForPolyline[
-                            (pointForPolyline.length / 2).toInt()],
-                        zoom: 12.0,
+                        center: LatLng(centre[0], centre[1]),
+                        zoom: zoom,
                         maxZoom: 100.0,
                         minZoom: 3.0),
                     layers: [
@@ -146,7 +146,7 @@ class ShowDetails extends StatelessWidget {
                   /*  Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => MapFullScreen(pointForPolyline: pointForPolyline,)));*/
-                    Navigator.push(context, ScaleRoute(page: MapFullScreen(pointForPolyline: pointForPolyline,)
+                    Navigator.push(context, ScaleRoute(page: MapFullScreen(pointForPolyline: pointForPolyline, zoom: zoom,)
                     )
                     );
                   },
@@ -229,4 +229,9 @@ class ShowDetails extends StatelessWidget {
       ),
     );
   }
+
+
+
+
+
 }
