@@ -3,50 +3,86 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
 /// Create by Andris on 24/05/2020
- class MapFullScreen extends StatelessWidget {
-   final List<LatLng> pointForPolyline;
+class MapFullScreen extends StatelessWidget {
+  final List<LatLng> pointForPolyline;
 
   const MapFullScreen({Key key, this.pointForPolyline}) : super(key: key);
-@override
-Widget build(BuildContext context) {
-  return Container(
-    child: FlutterMap(
-      options: MapOptions(
-          center: pointForPolyline[
-          (pointForPolyline.length / 2).toInt()],
-          zoom: 13.0,
-          maxZoom: 100.0,
-          minZoom: 3.0),
-      layers: [
-        MarkerLayerOptions(markers: [
-          Marker(
-              width: 80.0,
-              height: 80.0,
-              point: LatLng(37.519079, -122.353722),
-              builder: (ctx) => Container(
-                color: Colors.green,
-                child: FlutterLogo(
-                  colors: Colors.blue,
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Stack(children: [
+
+          Positioned(
+            child: FlutterMap(
+              options: MapOptions(
+                  center: pointForPolyline[(pointForPolyline.length / 2).toInt()],
+                  zoom: 13.0,
+                  maxZoom: 100.0,
+                  minZoom: 3.0),
+              layers: [
+                TileLayerOptions(
+                    urlTemplate:
+                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    subdomains: ['a', 'b', 'c']),
+                PolylineLayerOptions(
+                  polylines: [
+                    Polyline(
+                        points: pointForPolyline,
+                        strokeWidth: 4.0,
+                        color: Colors.purple),
+                  ],
                 ),
-              ),
-              anchorPos: AnchorPos.align(AnchorAlign.center)
-            // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[4].latitude, pointForPolyline[4].longitude)),
-            // anchorPos: AnchorPos.align(AnchorAlign.center),
+                MarkerLayerOptions(markers: [
+                  Marker(
+                      height: 55,
+                      width: 55,
+                      point: LatLng(pointForPolyline[0].latitude,
+                          pointForPolyline[0].longitude),
+                      builder: (ctx) => Container(
+                              child: Icon(
+                            Icons.location_on,
+                            size: 60,
+                            color: Colors.green,
+                          )),
+                      anchorPos: AnchorPos.align(AnchorAlign.top)
+                      // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[0].latitude, pointForPolyline[0].longitude)),
+                      // anchorPos: AnchorPos.align(AnchorAlign.center),
+                      ),
+                  Marker(
+                      height: 55,
+                      width: 55,
+                      point: LatLng(pointForPolyline.last.latitude,
+                          pointForPolyline.last.longitude),
+                      builder: (ctx) => Container(
+                              child: Icon(
+                            Icons.beenhere,
+                            size: 60,
+                            color: Colors.red,
+                          )),
+                      anchorPos: AnchorPos.align(AnchorAlign.top)
+                      // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[0].latitude, pointForPolyline[0].longitude)),
+                      // anchorPos: AnchorPos.align(AnchorAlign.center),
+                      ),
+                ]),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 130,
+            right: 35,
+            child: //Container(
+
+              IconButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.fullscreen_exit,size: 60)
+            ),
           ),
         ]),
-        TileLayerOptions(
-            urlTemplate:
-            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: ['a', 'b', 'c']),
-        PolylineLayerOptions(
-          polylines: [
-            Polyline(
-                points: pointForPolyline,
-                strokeWidth: 4.0,
-                color: Colors.purple),
-          ],
-        ),
-      ],
-    ),
-  );
-}}
+      ),
+    );
+  }
+}

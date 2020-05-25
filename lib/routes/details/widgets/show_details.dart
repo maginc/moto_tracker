@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:latlong/latlong.dart';
 import 'package:mototracker/constants.dart' as Constants;
 import 'package:mototracker/model/current_trip.dart';
@@ -14,6 +15,7 @@ import 'package:mototracker/util/utilities.dart';
 import 'package:mototracker/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
+import '../../scale_route.dart';
 import 'detail_widgets.dart';
 
 /**
@@ -63,11 +65,12 @@ class ShowDetails extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Stack(children: [
+            child: Stack(
+                children: [
 
               Positioned(
                 child: Container(
-                  height: 550,
+                  height:  MediaQuery.of(context).size.height/2+85,
                   child: FlutterMap(
                     options: MapOptions(
                         center: pointForPolyline[
@@ -76,22 +79,6 @@ class ShowDetails extends StatelessWidget {
                         maxZoom: 100.0,
                         minZoom: 3.0),
                     layers: [
-                      MarkerLayerOptions(markers: [
-                        Marker(
-                            width: 80.0,
-                            height: 80.0,
-                            point: LatLng(37.519079, -122.353722),
-                            builder: (ctx) => Container(
-                                  color: Colors.green,
-                                  child: FlutterLogo(
-                                    colors: Colors.blue,
-                                  ),
-                                ),
-                            anchorPos: AnchorPos.align(AnchorAlign.center)
-                            // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[4].latitude, pointForPolyline[4].longitude)),
-                            // anchorPos: AnchorPos.align(AnchorAlign.center),
-                            ),
-                      ]),
                       TileLayerOptions(
                           urlTemplate:
                               "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -104,24 +91,70 @@ class ShowDetails extends StatelessWidget {
                               color: Colors.purple),
                         ],
                       ),
+                      MarkerLayerOptions(
+                          markers: [
+                            Marker(
+                                height: 50,
+                                width: 50,
+                                point: LatLng(
+                                    pointForPolyline[0].latitude, pointForPolyline[0].longitude
+                                ),
+                                builder: (ctx) => Container(
+                                    child:// Icon(Icons.location_on, size: 40, color: Colors.green,)
+                                    SvgPicture.asset(
+                                      'assets/startpoint.svg',
+                                      color: Colors.green,
+                                      semanticsLabel: 'A red up arrow',
+                                      width: 70,
+                                      height: 70,
+                                    ),
+                                ),
+                                anchorPos: AnchorPos.align(AnchorAlign.top)
+                              // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[0].latitude, pointForPolyline[0].longitude)),
+                              // anchorPos: AnchorPos.align(AnchorAlign.center),
+                            ),
+                            Marker(
+                                height: 40,
+                                width: 40,
+                                point: LatLng(
+                                    pointForPolyline.last.latitude, pointForPolyline.last.longitude
+                                ),
+                                builder: (ctx) => Container(
+                                    child: Icon(Icons.beenhere, size: 40, color: Colors.red,)
+                               /*     SvgPicture.asset(
+                                      'assets/finishflag.svg',
+                                      color: Colors.black87,
+                                      semanticsLabel: 'A red up arrow',
+                                      width: 55,
+                                      height: 55,
+                                    ),*/
+                                ),
+                                anchorPos: AnchorPos.align(AnchorAlign.top)
+                              // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline.last.latitude, pointForPolyline.last.longitude)),
+                              // anchorPos: AnchorPos.align(AnchorAlign.center),
+                            ),
+                          ]),
                     ],
                   ),
                 ),
               ),
               Positioned(
                 bottom: 430,
-                right: 20,
+                right: 25,
                 child: IconButton(
                   onPressed: (){
-                    Navigator.push(
+                  /*  Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MapFullScreen(pointForPolyline: pointForPolyline,)));
+                        MaterialPageRoute(builder: (context) => MapFullScreen(pointForPolyline: pointForPolyline,)));*/
+                    Navigator.push(context, ScaleRoute(page: MapFullScreen(pointForPolyline: pointForPolyline,)
+                    )
+                    );
                   },
                   icon: Icon(Icons.fullscreen,size: 60)
                 ),
               ),
               Positioned(
-                height: 400,
+                height: 385,
                 bottom: 0.0,
                 left: 0.0,
                 right: 0.0,
