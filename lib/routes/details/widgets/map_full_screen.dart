@@ -40,14 +40,14 @@ class MapFullScreen extends StatelessWidget {
                 ),
                 MarkerLayerOptions(markers: [
                   Marker(
-                      height: 35,
+                      height: 25,
                       width: 40,
                       point: LatLng(pointForPolyline[0].latitude,
                           pointForPolyline[0].longitude),
                       builder: (ctx) => Container(
                               child: Icon(
                             Icons.location_on,
-                            size: 40,
+                            size: 30,
                             color: Colors.green,
                           )),
                       anchorPos: AnchorPos.align(AnchorAlign.top)
@@ -55,34 +55,34 @@ class MapFullScreen extends StatelessWidget {
                       // anchorPos: AnchorPos.align(AnchorAlign.center),
                       ),
                   Marker(
-                      height: 40,
-                      width: 40,
+                      height: 25,
+                      width: 45,
                       point: LatLng(pointForPolyline.last.latitude,
                           pointForPolyline.last.longitude),
                       builder: (ctx) => Container(
                               child: Icon(
                             Icons.beenhere,
-                            size: 40,
+                            size: 30,
                             color: Colors.red,
                           )),
                       anchorPos: AnchorPos.align(AnchorAlign.top)
                       // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[0].latitude, pointForPolyline[0].longitude)),
                       // anchorPos: AnchorPos.align(AnchorAlign.center),
                       ),
-                  Marker(
-                      height: 55,
-                      width: 55,
-                      point: LatLng(centre[0],centre[1]),
-                      builder: (ctx) => Container(
-                          child: Icon(
-                            Icons.flash_on,
-                            size: 60,
-                            color: Colors.red,
-                          )),
-                      anchorPos: AnchorPos.align(AnchorAlign.top)
-                    // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[0].latitude, pointForPolyline[0].longitude)),
-                    // anchorPos: AnchorPos.align(AnchorAlign.center),
-                  ),
+//                  Marker(
+//                      height: 55,
+//                      width: 55,
+//                      point: LatLng(centre[0],centre[1]),
+//                      builder: (ctx) => Container(
+//                          child: Icon(
+//                            Icons.flash_on,
+//                            size: 60,
+//                            color: Colors.red,
+//                          )),
+//                      anchorPos: AnchorPos.align(AnchorAlign.top)
+//                    // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[0].latitude, pointForPolyline[0].longitude)),
+//                    // anchorPos: AnchorPos.align(AnchorAlign.center),
+//                  ),
                 ]),
               ],
             ),

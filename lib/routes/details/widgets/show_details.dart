@@ -28,6 +28,7 @@ class ShowDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("SCREEN: " + MediaQuery.of(context).toString());
     final database = Provider.of<TripDatabase>(context);
     Map<String, dynamic> trol = jsonDecode(myTripEntry.route);
     MyRoute route = MyRoute.fromJson(trol);
@@ -37,6 +38,13 @@ class ShowDetails extends StatelessWidget {
     }
     var centre = Utilities.centroid(pointForPolyline);
     var zoom = Utilities.calculateZoom(myTripEntry.distance);
+
+    var mapAddHeight = 85;
+    if(MediaQuery.of(context).size.height < 700){
+      zoom = zoom - 1.0;
+      mapAddHeight = 0;
+    }
+
     return Scaffold(
       //backgroundColor: Constants.BACKGROUD_COLOR,
       extendBodyBehindAppBar: true,
@@ -71,11 +79,11 @@ class ShowDetails extends StatelessWidget {
 
               Positioned(
                 child: Container(
-                  height:  MediaQuery.of(context).size.height/2+85,
+                  height:  MediaQuery.of(context).size.height/2 + mapAddHeight,
                   child: FlutterMap(
                     options: MapOptions(
                         center: LatLng(centre[0], centre[1]),
-                        zoom: zoom,
+                        zoom: zoom - 1,
                         maxZoom: 100.0,
                         minZoom: 3.0),
                     layers: [
@@ -94,7 +102,7 @@ class ShowDetails extends StatelessWidget {
                       MarkerLayerOptions(
                           markers: [
                             Marker(
-                                height: 50,
+                                height: 30,
                                 width: 50,
                                 point: LatLng(
                                     pointForPolyline[0].latitude, pointForPolyline[0].longitude
@@ -105,8 +113,8 @@ class ShowDetails extends StatelessWidget {
                                       'assets/startpoint.svg',
                                       color: Colors.green,
                                       semanticsLabel: 'A red up arrow',
-                                      width: 70,
-                                      height: 70,
+                                      width: 50,
+                                      height: 50,
                                     ),
                                 ),
                                 anchorPos: AnchorPos.align(AnchorAlign.top)
@@ -114,13 +122,13 @@ class ShowDetails extends StatelessWidget {
                               // anchorPos: AnchorPos.align(AnchorAlign.center),
                             ),
                             Marker(
-                                height: 40,
+                                height: 25,
                                 width: 40,
                                 point: LatLng(
                                     pointForPolyline.last.latitude, pointForPolyline.last.longitude
                                 ),
                                 builder: (ctx) => Container(
-                                    child: Icon(Icons.beenhere, size: 40, color: Colors.red,)
+                                    child: Icon(Icons.adjust, size: 30, color: Colors.red,)
                                /*     SvgPicture.asset(
                                       'assets/finishflag.svg',
                                       color: Colors.black87,
@@ -129,7 +137,7 @@ class ShowDetails extends StatelessWidget {
                                       height: 55,
                                     ),*/
                                 ),
-                                anchorPos: AnchorPos.align(AnchorAlign.top)
+                                anchorPos: AnchorPos.align(AnchorAlign.center)
                               // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline.last.latitude, pointForPolyline.last.longitude)),
                               // anchorPos: AnchorPos.align(AnchorAlign.center),
                             ),
