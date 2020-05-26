@@ -41,9 +41,9 @@ class Utilities {
     } else if ( distance > 10 && distance < 20){
       result = 11.5;
     } else if (distance >= 20 && distance < 40){
-      result = 10.0;
+      result = 11.0;
     } else if (distance >=40){
-      result = 9.0;
+      result = 10.0;
     }
     return result;
   }
