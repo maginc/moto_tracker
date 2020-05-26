@@ -28,7 +28,7 @@ class ShowDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("SCREEN: " + MediaQuery.of(context).toString());
+    //print("SCREEN: " + MediaQuery.of(context).toString());
     final database = Provider.of<TripDatabase>(context);
     Map<String, dynamic> trol = jsonDecode(myTripEntry.route);
     MyRoute route = MyRoute.fromJson(trol);
@@ -99,7 +99,7 @@ class ShowDetails extends StatelessWidget {
                               color: Colors.purple),
                         ],
                       ),
-                      MarkerLayerOptions(
+                    /*  MarkerLayerOptions(
                           markers: [
                             Marker(
                                 height: 30,
@@ -108,14 +108,14 @@ class ShowDetails extends StatelessWidget {
                                     pointForPolyline[0].latitude, pointForPolyline[0].longitude
                                 ),
                                 builder: (ctx) => Container(
-                                    child:// Icon(Icons.location_on, size: 40, color: Colors.green,)
-                                    SvgPicture.asset(
+                                    child: Icon(Icons.location_on, size: 20, color: Colors.green,)
+                                    *//*SvgPicture.asset(
                                       'assets/startpoint.svg',
                                       color: Colors.green,
                                       semanticsLabel: 'A red up arrow',
                                       width: 50,
                                       height: 50,
-                                    ),
+                                    ),*//*
                                 ),
                                 anchorPos: AnchorPos.align(AnchorAlign.top)
                               // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline[0].latitude, pointForPolyline[0].longitude)),
@@ -128,20 +128,20 @@ class ShowDetails extends StatelessWidget {
                                     pointForPolyline.last.latitude, pointForPolyline.last.longitude
                                 ),
                                 builder: (ctx) => Container(
-                                    child: Icon(Icons.adjust, size: 30, color: Colors.red,)
-                               /*     SvgPicture.asset(
+                                    child: Icon(Icons.adjust, size: 15, color: Colors.red,)
+                               *//*     SvgPicture.asset(
                                       'assets/finishflag.svg',
                                       color: Colors.black87,
                                       semanticsLabel: 'A red up arrow',
                                       width: 55,
                                       height: 55,
-                                    ),*/
+                                    ),*//*
                                 ),
                                 anchorPos: AnchorPos.align(AnchorAlign.center)
                               // anchorPos: AnchorPos.exactly(Anchor(pointForPolyline.last.latitude, pointForPolyline.last.longitude)),
                               // anchorPos: AnchorPos.align(AnchorAlign.center),
                             ),
-                          ]),
+                          ]),*/
                     ],
                   ),
                 ),
