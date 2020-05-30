@@ -46,7 +46,9 @@ class MaxSpeed extends StatelessWidget {
                           }),
                       Text(
                         "Max Speed",
-                        style: TextStyle(fontFamily:'RobotoMono',fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
+                        style: TextStyle(
+                            fontFamily:'RobotoMono',
+                            fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
                       )
                     ]),
               ),

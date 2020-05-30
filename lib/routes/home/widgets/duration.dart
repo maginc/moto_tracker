@@ -42,7 +42,9 @@ class DurationHome extends StatelessWidget {
                         ),
                         Text(
                           "Duration",
-                          style: TextStyle(fontFamily:'RobotoMono',fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR, letterSpacing: 0.0),
+                          style: TextStyle(
+                              fontFamily:'RobotoMono',
+                              fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR, letterSpacing: 0.0),
                         )
                       ]),
                 ),

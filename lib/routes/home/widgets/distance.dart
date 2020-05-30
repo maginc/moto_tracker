@@ -51,7 +51,8 @@ class Distance extends StatelessWidget {
                       ),
                   Text(
                     "Distance",
-                    style: TextStyle(fontFamily:'RobotoMono',
+                    style: TextStyle(
+                        fontFamily:'RobotoMono',
                         fontSize: 20, color: Constants.SECONDARY_TEXT_COLOR),
                   )
                 ]),

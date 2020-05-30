@@ -39,6 +39,7 @@ android {
 
     lintOptions {
         disable 'InvalidPackage'
+        //checkReleaseBuilds false
     }
 
     defaultConfig {
@@ -59,6 +60,9 @@ android {
     }
     buildTypes {
         release {
+            profile {
+                matchingFallbacks = ['debug', 'release']
+            }
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.release
         }
