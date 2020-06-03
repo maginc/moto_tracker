@@ -90,7 +90,15 @@ class ShowDetails extends StatelessWidget {
                       TileLayerOptions(
                           urlTemplate:
                               "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                          subdomains: ['a', 'b', 'c']),
+                          subdomains: ['a', 'b', 'c']
+                      ),
+//                      TileLayerOptions(
+//                        urlTemplate: "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+//                        additionalOptions: {
+//                          'accessToken': 'pk.eyJ1Ijoic2F1c2FnZWlza2luZyIsImEiOiJja2F0aGZxcGkwaTB0MnlvM3JqeGJtcHA1In0.S1cCmzGU-WXDQWM0yJ6NsA',
+//                          'id': 'mapbox/streets-v11',
+//                        },
+//                      ),
                       PolylineLayerOptions(
                         polylines: [
                           Polyline(

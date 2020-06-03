@@ -1,3 +1,3 @@
 library constants;
 
-const ISOLATE_NAME = 'ComThemaginsMotottracker';
+const ISOLATE_NAME = 'ComThemaginsMotottrackerIsolate';

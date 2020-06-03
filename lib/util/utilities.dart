@@ -37,13 +37,13 @@ class Utilities {
   static double calculateZoom(double distance){
     double result = 12.0;
     if(distance<=10){
-      result = 12.5;
-    } else if ( distance > 10 && distance < 20){
-      result = 11.5;
-    } else if (distance >= 20 && distance < 40){
+      result = 12.0;
+    } else if ( distance > 10 && distance < 30){
       result = 11.0;
-    } else if (distance >=40){
+    } else if (distance >= 30 && distance < 100){
       result = 10.0;
+    } else if (distance >=100){
+      result = 9.0;
     }
     return result;
   }

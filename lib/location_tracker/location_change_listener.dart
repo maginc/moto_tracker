@@ -21,6 +21,7 @@ class LocationChangeListener {
 
     port.close();
     BackgroundLocator.unRegisterLocationUpdate();
+    IsolateNameServer.removePortNameMapping(Constants.ISOLATE_NAME);
 
   }
   void startLocationChangeListener() {
@@ -35,7 +36,6 @@ class LocationChangeListener {
     BackgroundLocator.registerLocationUpdate(
       callback,
       androidNotificationCallback: notificationCallback,
-
       settings: LocationSettings(
           notificationTitle: "Moto tracker",
           notificationMsg: "Trip recording started",
@@ -51,7 +51,8 @@ class LocationChangeListener {
 
 //   This conversion is necessary in order to keep everything loose coupled
 
-    send?.send(LocationDataImpl(
+    send?.send(
+        LocationDataImpl(
         latitude: locationDto.latitude,
         longitude: locationDto.longitude,
         accuracy: locationDto.accuracy,
