@@ -3,19 +3,15 @@ import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:background_locator/background_locator.dart';
-import 'package:background_locator/location_dto.dart';
 import 'package:background_locator/location_settings.dart';
 import 'package:mototracker/model/location_data_impl.dart';
 
 import '../util/constants.dart' as Constants;
+import 'location_callback_handler.dart';
 
 class LocationChangeListener {
   var controller = StreamController<LocationDataImpl>();
   ReceivePort port = ReceivePort();
-
-  static void notificationCallback() {
-    print('notificationCallback');
-  }
 
   void stopLocationChangeListener(){
 
@@ -33,34 +29,18 @@ class LocationChangeListener {
     IsolateNameServer.registerPortWithName(
         port.sendPort, Constants.ISOLATE_NAME);
 
+    //TODO make better notification icon
     BackgroundLocator.registerLocationUpdate(
-      callback,
-      androidNotificationCallback: notificationCallback,
+      LocationCallbackHandler.callback,
+      androidNotificationCallback: LocationCallbackHandler.notificationCallback,
       settings: LocationSettings(
           notificationTitle: "Moto tracker",
-          notificationMsg: "Trip recording started",
+          notificationMsg: "Trip is recording, press for more details",
+          notificationIcon: "@drawable/notification_icon",
           wakeLockTime: 20,
           autoStop: false,
           interval: 1),
     );
-  }
-
-  static void callback(LocationDto locationDto) async {
-    final SendPort send =
-        IsolateNameServer.lookupPortByName(Constants.ISOLATE_NAME);
-
-//   This conversion is necessary in order to keep everything loose coupled
-
-    send?.send(
-        LocationDataImpl(
-        latitude: locationDto.latitude,
-        longitude: locationDto.longitude,
-        accuracy: locationDto.accuracy,
-        altitude: locationDto.altitude,
-        speed: locationDto.speed,
-        speedAccuracy: locationDto.speedAccuracy,
-        heading: locationDto.heading,
-        time: locationDto.time));
   }
 
   //TODO replace this by RxDart,
