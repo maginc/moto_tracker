@@ -19,7 +19,6 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // BlocSupervisor.delegate = SimpleBlocDelegate();
   
-
   runApp(MyApp());
   Init.initPlatformState();
 }
