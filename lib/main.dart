@@ -18,6 +18,7 @@ import 'routes/home/home_page.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // BlocSupervisor.delegate = SimpleBlocDelegate();
+  
 
   runApp(MyApp());
   Init.initPlatformState();
