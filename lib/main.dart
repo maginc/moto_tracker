@@ -49,7 +49,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class Init {
   static Future<void> initPlatformState() async {
     await Permissions.checkLocationPermission().then((value) {
