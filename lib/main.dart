@@ -22,7 +22,6 @@ void main() {
   runApp(MyApp());
   Init.initPlatformState();
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
