@@ -20,7 +20,6 @@ class Utilities {
       return Utilities.msToMph(speed).toString();
     }
   }
-  
   static List<double> centroid(List<LatLng> points) {
     var centroid = [ 0.0, 0.0 ];
 
