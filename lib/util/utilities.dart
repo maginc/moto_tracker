@@ -9,7 +9,6 @@ class Utilities {
     return (metresPerSecond * 3.6).toInt();
   }
   
-
   static int msToMph(double metresPerSecond) {
     return (metresPerSecond * 2.23694).toInt();
   }
