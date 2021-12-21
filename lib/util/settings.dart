@@ -12,7 +12,6 @@ class MySettings {
       return 'mph';
     }
   }
-
   static Future<String> getDistanceUnitsString() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
