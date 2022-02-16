@@ -1,17 +1,28 @@
-# mototracker
+# Moto Tracker is minimalistic app for tracking your rides
 
-A new Flutter application.
+Moto Tracker offers tracking your route and basic information about it. </br>
+Such as maximum - averages speed, route length and duration.</br>
+Settings allows to switch between metric (kilometers) and  imperial (miles). </br>
+Also it does not maters in which units trip was recorded.</br>
+After switching, units for all trips will be converted to current ones.</br>
 
+<a href='https://play.google.com/store/apps/details?id=com.themagins.mototracker&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="200"/></a>
 
-## Getting Started
+### Actual data showing in main screen
+![Main screen](/screenshots/main_screen.png)    ![Main screen2](/screenshots/main_screen2.png)
 
-This project is a starting point for a Flutter application.
+### Save your trip
+![Save trip](/screenshots/save_trip.png)
 
-A few resources to get you started if this is your first Flutter project:
+### View trip history
+![Trip history](/screenshots/trip_list.png)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Detailed view for trip
+![Detailed view](/screenshots/trip_details.png)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Full screen map
+![Full screen map](/screenshots/map_full_screen.png)
+
+### Settings screen, with measure unit switch
+![Settings](/screenshots/settings_screen.png)
+
